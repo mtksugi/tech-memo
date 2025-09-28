@@ -1343,12 +1343,13 @@ def upload_sample(request):
         <input type="file" name="upload_file"><br>
         <input type="submit" value="保存">
     </form>
-{% endraw %}
 
     {% if uploaded_file_url %}
     <p>保存先： <a href="{{ uploaded_file_url }}"> {{ uploaded_file_url}} </a></p>
     {% endif %}
 ```
+{% endraw %}
+
 - アップロードされたファイルをmodelと紐つける
     - model.py
 ```python
@@ -1387,7 +1388,6 @@ def upload_model_form(request):
         {{ form.as_p }}     <!-- フォームを表示 -->
         <input type="submit" value="保存">
     </form>
-{% endraw %}
 
     {% if user %}
     <p>name： {{ user.name }}</p>
@@ -1396,6 +1396,8 @@ def upload_model_form(request):
     {% endif %}
     </body>
 ```
+{% endraw %}
+
 - プロジェクトフォルダ/urls.py
 
 実運用ではWebサーバでファイルのパスを通す. 以下はpython開発環境のserverで画像を取り扱うときの例
