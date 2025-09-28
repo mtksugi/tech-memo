@@ -19,11 +19,13 @@ npm i -g live-server
 ### run
 
 引数にトップディレクトリを指定する
+
 ```bash
 live-server public
 ```
 
 たぶん、パッケージローカルにインストールしても動くが、その場合は、
+
 ```bash
 .node_modules/.bin/live-server
 ```
@@ -65,11 +67,13 @@ node_modules/.bin/babel src/app.js --out-file=public/scripts/app.js --presets=@b
 
 ### install
 webpack-cliも必要
+
 ```bash
 npm install webpack webpack-cli
 ```
 
 ### command
+
 ```bash
 webpack
 # watchも書ける
@@ -142,6 +146,7 @@ module.exports = {
 live-serverの代わりにwebpack-dev-severというものがある（webpack-dev-serverをインストール）.  
 
 configファイルに以下を追加
+
 ```javascript
   devServer: {
     static: {
@@ -168,6 +173,7 @@ webpack-dev-serverにはproxyがあり、フロントエンドとバックエン
 ```
 
 react-scritpsでは、package.jsonに、proxyを追加する
+
 ```json
   "name": "summaria_ui",
   "version": "0.1.0",
@@ -183,6 +189,7 @@ react-scritpsでは、package.jsonに、proxyを追加する
 ## JSX
 
 これはNG.  
+
 ```javascript
 const template = (
   <h1>Indecision App</h1>
@@ -202,6 +209,7 @@ const template = (
 ```
 
 空タグでよい.
+
 ```javascript
 const template = (
   <>
@@ -264,6 +272,7 @@ const template = (
 ### イテレート（繰り返し）
 
 オブジェクトは{}にかけないが、`{<p>hoge</p>}`は書けるので、`Array.map()`と組み合わせて以下のように書ける
+
 ```javascript
     <ol>
       {
@@ -287,6 +296,7 @@ const template = (
 ### Dom（タグ）のShow/Hideの標準
 
 onClick部分
+
 ```javascript
 let displayHello = true
 const toggleHello = () => {
@@ -296,6 +306,7 @@ const toggleHello = () => {
 ```
 
 render部分
+
 ```javascript
 <button onClick={toggleHello}>{displayHello ? 'Hide Hello' : 'Show Hello'}</button>
 {displayHello && (      {/* ...要は、{}でboolean変数とタグまるごと囲う */}
@@ -313,6 +324,7 @@ render部分
 
 React.componentを継承したクラスを作成して、JSXの中に書く.  
 class名は先頭文字を大文字にするルール.  
+
 ```javascript
 class IndecisionApp extends React.Component {
   render() {
@@ -371,6 +383,7 @@ class Header extends React.Component {
 #### props.children
 
 `props`ではchildrenを使って、以下のように書ける
+
 ```javascript
 const Layout = (props) => {
   return (
@@ -433,7 +446,6 @@ class Action extends React.Component {
     )
   }
 }
-
 ```
 
 #### Class Property
@@ -441,6 +453,7 @@ class Action extends React.Component {
 ただし、ES6では以下のように書き換え可能. 
 
 `constructor`に書いてきた↓のコードは、、
+
 ```javascript
 class IndecisionApp extends React.Component {
   constructor(props) {
@@ -459,9 +472,9 @@ class IndecisionApp extends React.Component {
   handleDeleteOption() {
     //...
   }
-
 ```
 ES6のclass propertyを使って、以下のように書き換え
+
 ```javascript
 class IndecisionApp extends React.Component {
   state = {
@@ -554,6 +567,7 @@ class Header extends React.Component {
 }
 ```
 Headerは以下のように書き換える
+
 ```javascript
 class IndecisionApp extends React.Component {
   render() {
@@ -581,6 +595,7 @@ const Header = (props) => { {/* functionにしてpropsを引数にする */}
 ### Default Props
 
 引数のデフォルトの書き方
+
 ```javascript
 const Header = (props) => {
   return (
@@ -622,7 +637,6 @@ class IndecisionApp extends React.Component {
   componentWillUnmount() {  {/* 画面終了時 */}
     console.log('component will unmount');
   }
-
 ```
 
 ### ライフサイクルのDidMountとDidUpdateにデータのロードと書き出しを書く
@@ -704,11 +718,13 @@ ReactDOM.render(<IndecisionApp/>, document.getElementById('app'))
 ### scssでの変数の使用
 
 - 変数を定義して
+
 ```scss
 $off-black: #20222b;
 // 省略
 ```
 値として使える
+
 ```scss
 .header {
   background: $off-black;
@@ -751,6 +767,7 @@ $off-black: #20222b;
 ## React Router Dom
 
 ライブラリをインストール
+
 ```bash
 npm install react-router-dom
 ```

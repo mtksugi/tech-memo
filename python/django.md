@@ -18,25 +18,30 @@ Anaconda：Pythonのローカル開発環境。Pythonで動く機械学習用ラ
 - インストール後
 
 環境作成
+
 ```bash
 conda create -n pythonenv python=3.8
 ```
 
 環境確認
+
 ```bash
 conda env list
 ```
 
 アクティベーション
+
 ```bash
 conda activate pythonenv
 ```
 
 djangoインストール
+
 ```bash
 pip install django
 ```
 ※環境削除
+
 ```bash
 conda remove -n [環境名] --all
 ```
@@ -45,17 +50,20 @@ conda remove -n [環境名] --all
 
 vscodeのsettings.jsonに以下を入れる
 指定する値はアナコンダの仮想環境のパスで、conda env listで表示されるパス＋python.exe
+
 ```json
     "python.pythonpath": "C:\\Users\\sugiura\\.conda\\envs\\pythonenv\\python.exe",
 ```
 
 sample.pyを作成し、
+
 ```python
 print('helloworld')
 ```
 として、runするとターミナルで実行できる
 
 VSCodeのターミナルで
+
 ```bash
 activate pythonenv
 django-admin startproject [プロジェクト名]
@@ -63,6 +71,7 @@ django-admin startproject [プロジェクト名]
 とするとpythonプロジェクトが作成される
 
 さらに
+
 ```bash
 cd [↑のプロジェクト名フォルダ]
 python manage.py runserver
@@ -75,6 +84,7 @@ python manage.py runserver
 ## Django
 
 - MTV（Model, Template, View）モデル
+
 ```
 user -> 1 -> View -> 2 -> Model
        <- 6 <-         <- 3 <-
@@ -84,16 +94,19 @@ user -> 1 -> View -> 2 -> Model
 
 
 ### プロジェクト作成
+
 ```bash
 django-admin startproject [プロジェクト名]
 ```
 
 ### アプリケーション起動
+
 ```bash
 cd [↑のプロジェクト名フォルダ]
 python manage.py runserver <ポート番号指定（未指定は8000）>
 ```
 - ↑は127.0.0.1が起動する. 他からアクセスしたい場合は、0:ポート番号
+
 ```bash
 python manage.py runserver 0:8000
 ```
@@ -117,6 +130,7 @@ first_prj/                   # プロジェクトフォルダ
 - **ASGI**：非同期呼び出し、WebSocket HTTP/2.0に対応
 
 ### setting.py
+
 ```python
 # Oracle/MySQLなどの指定が可能
 DATABASES = {   
@@ -146,6 +160,7 @@ python manage.py migrate
 - django_content_type
 
 ### アプリケーション作成
+
 ```bash
 python manage.py startapp [アプリケーション名]
 ```
@@ -165,6 +180,7 @@ urlpatterns = [
     path('first_app/', include('first_app.urls'))   # ...<- first_app.urlsをインクルードしている. １つ目の引数がURLのパスに相当する
 ]
 ```
+
 ```python:first_app/urls.py
 from . import views
 
@@ -191,6 +207,7 @@ urlpatterns = [
     path('number_page/<str:user_name>/<int:number>', views.number_page, name = 'number'),   # ...<- 引数は複数入れることも可
 ]
 ```
+
 ```python:first_app/views.py
 from django.http import HttpResponse
 
@@ -245,13 +262,13 @@ TEMPLATES = [
         'APP_DIRS': True,
 #...
 ```
+
 ```python
 import os   # ...PATHの結合用にimport
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates2') # ...TEMPLATE_DIRで変更先のtemplateフォルダを指定する
-
 ```
 ### htmlの内容を動的にする
 
@@ -300,6 +317,7 @@ Age: 28
 
 - html
 {% raw %}
+
 ```html
 <ul>
     {% for band in favourite_band %}    <!-- for文 -->
@@ -321,6 +339,7 @@ Age: 28
 
 - 継承元（親/ベース）
 {% raw %}
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -337,6 +356,7 @@ Age: 28
 {% endraw %}
 - 継承先
 {% raw %}
+
 ```html
 {%  extends "base.html" %}      <!-- 継承元を指定  extends [継承元] -->
 {% block title %}Sample1 {{ block.super }}{% endblock %}    <!-- blockの中に書き換える内容を書く block.superで継承元の内容を利用できる -->
@@ -350,6 +370,7 @@ Age: 28
 - html
 変数名の後に | （パイプ）でコマンドをつなげると変数を編集できる
 {% raw %}
+
 ```html
 <p>{{name|upper}}</p>   
 <p>{{page_url|urlize}}</p>  <!-- aタグのリンクにする. 値は ": https://----" コロンとスペースの後にurlとなっている必要がある -->
@@ -370,6 +391,7 @@ Age: 28
 ### フィルターの自作
 
 - Appフォルダの下にtemplatetagsフォルダを作る
+
 ```
 TemplateApp
 ├─templatetags
@@ -378,6 +400,7 @@ TemplateApp
 ```
 
 - フィルタを定義するソース（↑のevent_tags.py）
+
 ```python
 from django import template
 register = template.Library()
@@ -397,6 +420,7 @@ def convert_status_to_string(status, val):  # 関数名は任意. 引数を一�
 
   - html
 {% raw %}
+
 ```html
 {% load event_tags %}   <!-- フィルタを定義したファイルのロードを記述 -->
 
@@ -411,6 +435,7 @@ def convert_status_to_string(status, val):  # 関数名は任意. 引数を一�
   {% raw %}`{%url  'app名:遷移先ページ名'%}`{% endraw %}をつかう
   後ろに遷移先にわたす引数を書ける
 {% raw %}
+
 ```html
 <a href="{% url 'template_app:home'  first_name='Saburo' last_name='Ito' %}">home</a>   
 ```
@@ -438,6 +463,7 @@ def home(request, first_name, last_name):   # 関数の引数を指定する
 
   - settings.py
   識別子ありの場合
+
 ```python
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_DIR_2 = os.path.join(BASE_DIR, 'css')
@@ -448,6 +474,7 @@ STATICFILES_DIRS = [
 ]
 ```
   識別子なしの場合
+
 ```python
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
@@ -459,6 +486,7 @@ STATICFILES_DIRS = [
   - htmlの記述
   識別子ありの場合
 {% raw %}
+
 ```html
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
@@ -471,6 +499,7 @@ STATICFILES_DIRS = [
 - インスタンスプロパティの使用
 
   - views.py
+
 ```python
 class Country:  # クラスを定義してプロパティを持つ
 
@@ -488,6 +517,7 @@ class Country:  # クラスを定義してプロパティを持つ
 
   - html側
   クラス名.プロパティ名で使用できる
+
 ```html
 国名：{{ country.name}} <br>
 人口：{{ country.population}} <br>
@@ -500,6 +530,7 @@ class Country:  # クラスを定義してプロパティを持つ
 - テーブルの作成
 
   - models.py
+
 ```python
 from django.db import models
 
@@ -516,12 +547,14 @@ class Sales(models.Model):
 ```
 
 - classに指定したテーブルの反映...マイグレーションという
+
 ```bash
 python manage.py makemigrations ModelApp --name add_person
 ```
 add_person→マイグレーション対象の名前
 
 - フォルダ構成
+
 ```
 アプリケーションフォルダ\migrations
 │  0001_add_person.py   # makemaigraions で生成されるファイル
@@ -529,6 +562,7 @@ add_person→マイグレーション対象の名前
 ```
 
 - マイグレーションの実行
+
 ```bash
 python manage.py migrate ModelApp
 ```
@@ -536,11 +570,13 @@ python manage.py migrate ModelApp
 前回のmigrate後、makemaigrationsを実行したものを適用する
 
 - マイグレーションの適用状況の確認
+
 ```bash
 python manage.py showmigrations ModelApp
 ```
 
 ModelApp
+
 ```
  [X] 0001_add_person    ←実行されているものがXマーク
  [X] 0002_add_sales
@@ -548,6 +584,7 @@ ModelApp
 
 - マイグレーションを戻す
 ↑の状態で0002_add_salesを戻すとき
+
 ```bash
 python manage.py migrate ModelApp 0001_add_person
 ```
@@ -555,6 +592,7 @@ python manage.py migrate ModelApp 0001_add_person
 migrationsフォルダのなかのファイルは手動で削除する
 
 - すべてのマイグレーションを戻す
+
 ```bash
 python manage.py migrate ModelApp zero
 ```
@@ -568,6 +606,7 @@ python manage.py migrate ModelApp zero
   - blank
 
 - django管理画面
+
 ```bash
 python manage.py createsuperuser
 ```
@@ -578,6 +617,7 @@ http://127.0.0.1:8000/admin
 - Meta属性（model の継承）
   - abstract属性でModelの継承（共通のカラムの定義など）が可能
   - models.py
+
 ```python
 class BaseMeta(models.Model):
     create_at = models.DateTimeField(timezone.datetime.now)
@@ -593,6 +633,7 @@ class Person(BaseMeta): # このテーブルにはcreate_at/update_atが追加�
 カラム構成の並び順を変える場合はマイグレーションファイルを直接書き換える
 
 - models.py
+
 ```python
     class Meta:
         db_table = 'person'     # 実テーブル名を書き換える場合. 指定しないと[アプリケーション名_クラス名]という名前になる
@@ -602,6 +643,7 @@ class Person(BaseMeta): # このテーブルにはcreate_at/update_atが追加�
 
 - レコードの追加
   - main.pyなど
+
 ```python
 import os
 
@@ -644,6 +686,7 @@ print(created)
 
 - レコードの取得
   - main.pyなど
+
 ```python
 # 全件取得
 persons = Person.objects.all()
@@ -667,6 +710,7 @@ print(persons[0].email)
 
 - レコードの更新
   - main.pyなど
+
 ```python
 # 1件取得してインスタンスの内容を書き換えてsave()メソッドを実行
 p = Person.objects.get(id=1)
@@ -683,6 +727,7 @@ Person.objects.filter(first_name = 'Saburo').update(
 ```
 
 - レコードの削除
+
 ```python
 # 条件入れて削除
 Person.objects.filter(first_name = 'Saburo').delete()
@@ -693,6 +738,7 @@ Person.objects.all().delete()
 - 外部キーの作成...1対多のリレーション
   - models.py
   - models.ForeignKey()で参照先テーブル名を指定すると、そのプライマリーキーがテーブルに項目として追加される
+
 ```python
 class Students(models.Model):
     name = models.CharField(max_length=20)
@@ -716,6 +762,7 @@ class Students(models.Model):
 - 外部キーのレコード設定
   - ↑の続き
   - main.pyなど
+
 ```python
 from ModelApp.models import Students, Schools, Prefectures
 
@@ -747,6 +794,7 @@ def insert_records():
 
 - 外部キー項目のselect
   - main.pyなど
+
 ```python
 def select_students():
     students = Students.objects.all()
@@ -757,6 +805,7 @@ def select_students():
 
 - 1対1のリレーション
   - models.py
+
 ```python
 class Places(models.Model):
     name = models.CharField(max_length=50)
@@ -782,6 +831,7 @@ ForeignkeyField()は参照先をクラス名の文字列で指定。OneToOneFiel
 
 - 多対多のリレーション
   - models.py
+
 ```python
 class Authors(models.Model):
     name = models.CharField(max_length=50)
@@ -799,6 +849,7 @@ class Books(models.Model):
 - ManyToManyField...　これを追加することで上の例では、実テーブルはbooks, authors, books_authors(id, books_id, authors_id)の3テーブルが作成される
 
   - main.pyなど
+
 ```python
 book1 = Books(name = 'book1')
 book1.save()
@@ -816,6 +867,7 @@ book1.authors.add(author1, author2)     # これでbooks_authorsにレコード�
 
 - リレーション先のデータの取得方法
   - main.pyなど
+
 ```python
 from ModelApp.models import Students, Schools, Prefectures
 
@@ -847,6 +899,7 @@ print(a.books_set.all())    # ない側は項目名_setで取る
 
 - 条件付きデータの取得
   - main.pyなど
+
 ```python
 print(Students.objects.all())   # 全件取得
 
@@ -909,6 +962,7 @@ print(Students.objects.values('school__name').annotate(     # group by も同様
 
 - values の group by 句について
   - models.py
+
 ```python
 class Students(models.Model):
     class1 = models.ForeignKey(
@@ -928,17 +982,21 @@ class Classes(models.Model):
 ```
 ↑の場合、
 - main.pyなど
+
 ```python
 print(Classes.objects.values('name').annotate().query)
 ```
 結果は
+
 ```sql
 SELECT "classes"."name" FROM "classes"
 ```
+
 ```python
 print(Classes.objects.values('name', 'students__id').annotate().query)
 ```
 結果は
+
 ```sql
 SELECT "classes"."name", "students"."id" FROM "classes" LEFT OUTER JOIN "students" ON ("classes"."id" = "students"."class1_id")
 ```
@@ -958,6 +1016,7 @@ HTMLフォームを簡単に作成できる
 
 - 基本的な使い方
   - forms.py
+
 ```python
 from django import forms
 from django.forms.forms import Form
@@ -968,6 +1027,7 @@ class UserInfo(forms.Form):     # HTML1フォームのクラスを定義
     mail = forms.EmailField()
 ```
   - views.py
+
 ```python
 from . import forms
 
@@ -988,6 +1048,7 @@ def form_page(requet):      # templateでやった1ページごとのクラス
 ```
   - html側
 {% raw %}
+
 ```html
     <body>
     <form method="POST">
@@ -1003,6 +1064,7 @@ def form_page(requet):      # templateでやった1ページごとのクラス
 
 - formクラスの様々な入力形式
   - forms.py
+
 ```python
 from django import forms
 from django.forms.forms import Form
@@ -1025,6 +1087,7 @@ class UserInfo(forms.Form):     # HTML1フォームのクラスを定義
 
 - formクラスの項目のカスタマイズ
   - forms.py
+
 ```python
 class UserInfo(forms.Form):
     name = forms.CharField(label='名前', max_length=10, min_length=5)   # ラベルの追加、項目長の指定
@@ -1049,6 +1112,7 @@ class UserInfo(forms.Form):
 
 - formクラスのid/classの付与
   - forms.py
+
 ```python
 # 方法1...widgetのattrsを使う方法
 class UserInfo(forms.Form):
@@ -1070,6 +1134,7 @@ class UserInfo(forms.Form):
 エラーにするには、forms.ValidationError('メッセージ')
   - forms.py
   - 方法1 clean_[項目名](self)の関数を作って値をチェックする
+
 ```python
 class UserInfo(forms.Form):
     hobbies = forms.MultipleChoiceField(
@@ -1085,6 +1150,7 @@ class UserInfo(forms.Form):
             raise forms.ValidationError('httpsではありません')
 ```
   - 方法2 項目定義のパラメータvalidators=[]を設定する. 中にはcore.validatorsを使うこともできるし、自作関数を設定することもできる.
+
 ```python
 from django.core import validators
 
@@ -1097,6 +1163,7 @@ class UserInfo(forms.Form):
     age = forms.IntegerField(label='年齢', validators=[validators.MinValueValidator(20, message='20以上でなければなりません')])     # validatorsを使う
 ```
   - 方法3 clean(self)関数を使う
+
 ```python
 class UserInfo(forms.Form):
     ...
@@ -1112,6 +1179,7 @@ class UserInfo(forms.Form):
 - ModelForm
 ModelとFormを合体して一つで簡単に扱う
   - models.py
+
 ```python
 from django.db import models
 
@@ -1121,6 +1189,7 @@ class Post(models.Model):
     memo = models.CharField(max_length=255)
 ```
   - forms.py
+
 ```python
 from .models import Post
 
@@ -1137,6 +1206,7 @@ class PostModelForm(forms.ModelForm):       # forms.ModelFormを継承したク�
 ```
 
   - views.py
+
 ```python
 def form_post(request):
     form = forms.PostModelForm()        # formsのクラス
@@ -1154,6 +1224,7 @@ def form_post(request):
 - formの各要素を表示
   - html
 {% raw %}
+
 ```html
     <form method="POST">
         {% csrf_token %}
@@ -1169,6 +1240,7 @@ def form_post(request):
 - formのエラーを表示
   - html
 {% raw %}
+
 ```html
     <form method="POST">
         {% csrf_token %}
@@ -1189,6 +1261,7 @@ def form_post(request):
   includeで差し替えるhtmlファイルを指定する
   with句で引数を渡す
 {% raw %}
+
 ```html
     <body>
         {% include "formapp/form_template2.html" with as_table=True %}
@@ -1199,6 +1272,7 @@ def form_post(request):
 
 差し替える部分だけを書く
 {% raw %}
+
 ```html
     <form method="POST">
         {% csrf_token %}
@@ -1219,6 +1293,7 @@ def form_post(request):
 - formset...複数のformを扱う
   - forms.py
   通常のフォームクラス
+
 ```python
 class FormSetPost(forms.Form):
     title = forms.CharField(label='タイトル')
@@ -1228,6 +1303,7 @@ class FormSetPost(forms.Form):
 - views.py
 
 formset_factoryを使う
+
 ```python
 from django.forms import formset_factory
 
@@ -1246,6 +1322,7 @@ def form_set_post(request):
 
 formset.management_formの指定が必要
 {% raw %}
+
 ```html
     <form method="POST">
         {% csrf_token %}
@@ -1261,6 +1338,7 @@ formset.management_formの指定が必要
 
 - modelSetFormで複数のフォームを一括で扱う
   - forms.py
+
 ```python
 class ModelFormSetPost(forms.ModelForm):
     title = forms.CharField(label='タイトル')
@@ -1272,6 +1350,7 @@ class ModelFormSetPost(forms.ModelForm):
 ```
 
 - models.py
+
 ```python
 class ModelSetPost(models.Model):
     title = models.CharField(max_length=255)
@@ -1280,6 +1359,7 @@ class ModelSetPost(models.Model):
 
 - html
 {% raw %}
+
 ```html
     <form method="POST">
         {% csrf_token %}
@@ -1290,6 +1370,7 @@ class ModelSetPost(models.Model):
 {% endraw %}
 
 - views.py
+
 ```python
 from django.forms importmodelformset_factory
 from .models import ModelSetPost
@@ -1309,11 +1390,13 @@ def modelform_set_post(request):
 - ファイルのアップロード
   - settings.py
   ファイルのアップロード先を指定
+
 ```python
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ```
   - views.py
+
 ```python
 from django.core.files.storage import FileSystemStorage
 import os
@@ -1337,6 +1420,7 @@ def upload_sample(request):
 
 - html
 {% raw %}
+
 ```html
     <form method="POST" enctype="multipart/form-data">  <!-- enctypeにmultipart/form-dataを指定して、ファイル（バイナリデータ）を扱えるようにする -->
         {% csrf_token %}
@@ -1352,6 +1436,7 @@ def upload_sample(request):
 
 - アップロードされたファイルをmodelと紐つける
   - model.py
+
 ```python
 class User(models.Model):
     name = models.CharField(max_length=50)
@@ -1359,6 +1444,7 @@ class User(models.Model):
     picture = models.FileField(upload_to='picture/%Y/%m/%d')    # FileFiled型にして、upload_to=で保存フォルダを指定する. /%Y/%m/%dは日付のフォルダに格納する方法
 ```
 - forms.py
+
 ```python
 class UserForm(forms.ModelForm):
 
@@ -1367,6 +1453,7 @@ class UserForm(forms.ModelForm):
         fields = '__all__'
 ```
 - views.py
+
 ```python
 def upload_model_form(request):
     user = None
@@ -1382,6 +1469,7 @@ def upload_model_form(request):
 ```
 - html
 {% raw %}
+
 ```html
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -1401,6 +1489,7 @@ def upload_model_form(request):
 - プロジェクトフォルダ/urls.py
 
 実運用ではWebサーバでファイルのパスを通す. 以下はpython開発環境のserverで画像を取り扱うときの例
+
 ```python
 from django.conf import settings
 from django.conf.urls.static import static
@@ -1416,6 +1505,7 @@ if settings.DEBUG:
 
 - formとmodelformをつかったinsert/update/delete
   - forms.py
+
 ```python
 # insert/update/deleteそれぞれ専用のFormを用意する
 
@@ -1443,6 +1533,7 @@ class StudentsDeleteForm(forms.Form):
 ```
 
 - views.py
+
 ```python
 # insert は ModelFormを使用する
 def form_students(request):
@@ -1506,6 +1597,7 @@ def delete_student(request, id):
     })
 ```
 - urls.py
+
 ```python
 # updateとinsertはurl引数にキーを設定する
 urlpatterns = [
@@ -1519,6 +1611,7 @@ urlpatterns = [
 
 - リダイレクト
   - views.py
+
 ```python
 def to_google(request):
     return redirect('https://www.google.jp')     # googleに飛ばす
@@ -1532,6 +1625,7 @@ def item_detail(request, id):
         return redirect('store:item_list')   # 存在しないデータで来た場合に別のページにリダイレクト
 ```
 - リダイレクトされたときのログ...302が出る
+
 ```
 [21/Nov/2021 10:17:00] "GET /store/item_detail/10 HTTP/1.1" 302 0   # ステータスコード302がリダイレクト
 [21/Nov/2021 10:17:00] "GET /store/item_list/ HTTP/1.1" 200 510
@@ -1541,6 +1635,7 @@ def item_detail(request, id):
 - エラーハンドリング
   - settings.py
   - デバッグモードでない場合にエラーハンドリングが有効
+
 ```python
 DEBUG = False       # Falseに設定
 ALLOWED_HOSTS = ['*']   # Falseに設定したらALLOWED_HOSTSにも値が必要
@@ -1548,6 +1643,7 @@ ALLOWED_HOSTS = ['*']   # Falseに設定したらALLOWED_HOSTSにも値が必要
 
 - views.py
   - viewsに専用関数を用意
+
 ```python
 def page_not_found(request, exception):
     return render(request, 'store/404.html', status=404)
@@ -1558,6 +1654,7 @@ def server_error(request):
 ```
 - プロジェクト/urls.py
   - handler404, handler500を指定
+
 ```python
 from store import views
 
@@ -1567,6 +1664,7 @@ handler500 = views.server_error  # httpステータスコード500（サーバ�
 
 - viewの中で404を発生させたい場合
   - views.py
+
 ```python
 def item_detail(request, id):
     if id == 0:
@@ -1576,6 +1674,7 @@ def item_detail(request, id):
 - modelの取得と同時に404を発生させたい場合
   - views.py
   - get_list_or_404, get_object_or_404
+
 ```python
 from django.shortcuts import redirect, render, get_list_or_404, get_object_or_404
 
@@ -1586,6 +1685,7 @@ def item_detail(request, id):
 - パスワード設定
   - パスワードのハッシュ関数
   - settings.py
+
 ```python
 # https://docs.djangoproject.com/en/3.2/topics/auth/passwords/ のページに従って追加する.
 # 上から順に使われる
@@ -1598,6 +1698,7 @@ PASSWORD_HASHERS = [
 ```
 
 - argon2はインストールが必要
+
 ```bash
 pip install django[argon2]
 ```
@@ -1606,6 +1707,7 @@ pip install django[argon2]
   - django.contrib.auth.models.userを使う
   - userに追加項目をもたせるときはOneToOne関係でmodelを追加する
   - models.py
+
 ```python
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -1617,6 +1719,7 @@ class Profile(models.Model):
 ```
 - formにはwidget=PasswordInput()を使用する
   - forms.py
+
 ```python
 class LoginForm(forms.Form):
     username = forms.CharField(label='名前', max_length=50)
@@ -1632,6 +1735,7 @@ class LoginForm(forms.Form):
 ```
 - 管理画面に表示させるにはadmin.pyに追加
   - admin.py
+
 ```python
 from user.models import Profile
 
@@ -1640,6 +1744,7 @@ admin.site.register(Profile)
 
 - ユーザー新規登録時、パスワードの設定はset_passwordを使う
   - views.py
+
 ```python
 def register(request):
     user_form = UserForm(request.POST or None)
@@ -1656,6 +1761,7 @@ def register(request):
 - ログイン時、django.contrib.auth.authenticateで検証
 - okならdjango.contrib.auth.loginをする
   - views.py
+
 ```python
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -1683,6 +1789,7 @@ def user_login(request):
 ```
 - ログアウト
   - django.contrib.auth.logout
+
 ```python
 @login_required         # ←これでログイン中しか行えないメソッドになる
 def user_logout(request):
@@ -1693,6 +1800,7 @@ def user_logout(request):
 - htmlでログイン中か判断する
   - html側
 {% raw %}
+
 ```html
         {% if user.is_authenticated %}
 ```
@@ -1701,6 +1809,7 @@ def user_logout(request):
 - パスワードのvalidation
   - パスワードのチェック方法はsettings.pyに記載
   - settings.py
+
 ```python
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -1725,6 +1834,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ```
 - パスワードバリデーションの実装
   - views.py
+
 ```python
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
@@ -1744,6 +1854,7 @@ from django.core.exceptions import ValidationError
   - utilsを追加
   - utils.validators.pyなど
     - ↓のクラスをsettings.pyに入れる
+
 ```python
 from django.core.exceptions import ValidationError
 import re       # 正規表現を使えば楽
@@ -1769,6 +1880,7 @@ class CustomPasswordValidators():
   - models.py
     - AbstractBaseUserを継承して、ユーザークラスを、
       BaseUserManagerを継承して、ユーザーマネージャークラスをそれぞれカスタマイズする
+
 ```python
 from django.db import models
 from django.contrib.auth.models import (
@@ -1820,12 +1932,14 @@ class User(AbstractBaseUser, PermissionsMixin):     # ユーザークラス
 
 - settings.py
   ROOT_URLCONFを追加
+
 ```python
 ROOT_URLCONF = 'CustomizedUser.urls'
 ```
 
 - 管理画面を変更するにはforms.pyを定義
   - forms.py
+
 ```python
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -1871,6 +1985,7 @@ class UserChangeForm(forms.ModelForm):        # ユーザー変更時の設定
 
 - 管理画面の定義
   - admin.py
+
 ```python
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import  get_user_model
@@ -1901,6 +2016,7 @@ admin.site.register(User, CustomizeUserAdmin)      # 管理画面に登録
 
 - 管理画面のカスタマイズ
   - models.py
+
 ```python
 class Students(models.Model):
     name = models.CharField(max_length=20, verbose_name='名前')     # verbose_nameで項目名の表示を変更
@@ -1930,6 +2046,7 @@ class Schools(models.Model):
 ```
 
 - admin.py
+
 ```python
 class StudentsAdmin(admin.ModelAdmin):
     # 追加項目の並び順の変更
@@ -1967,6 +2084,7 @@ class SchoolsAdmin(admin.ModelAdmin):
 https://github.com/django/django/blob/main/django/contrib/admin/templates/admin/base_site.html  
 サイトタイトルを変更
 {% raw %}
+
 ```html
 {% extends "admin/base.html" %}
 
@@ -1991,6 +2109,7 @@ https://github.com/django/django/blob/main/django/contrib/admin/static/admin/css
 - そのとき、UUIDというトークンを発行し、userと外部結合する（UUID, 有効期限）をもったテーブル（model）を準備する
 
   - models.py
+
 ```python
 from uuid import uuid4
 class UserActivateTokens(models.Model):
@@ -2010,6 +2129,7 @@ class UserActivateTokens(models.Model):
 
   receiverの第1引数は post_save:save後 / pre_save / pre_delete / post_delete などがある
   第2引数に対象modelをトル
+
 ```python
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -2027,6 +2147,7 @@ def publish_token(sender, instance, **kwargs):  # ココの引数は既定
 
   （ストアドのようなものか？）model.Modelにテーブルの定義を記述するのと、model.Managerに対象テーブルのデータの操作を記述する
     - models.py
+
 ```python
 class UserActivateTokensManager(models.Manager):    # models.Managerを継承
 
@@ -2060,6 +2181,7 @@ class UserActivateTokens(models.Model):
   messages.debug / info / success / warning / error  
   レベルはsettings.py  MESSAGE_LEVEL を使用する  
   - views.py
+
 ```python
 from django.contrib import messages
 
@@ -2078,6 +2200,7 @@ from django.contrib import messages
 
 messagesがあれば表示する
 {% raw %}
+
 ```html
 {% if messages %}
   {% for message in messages %}
@@ -2089,12 +2212,14 @@ messagesがあれば表示する
 
 - ModelFormで更新
   - forms.py
+
 ```python
 class UserEditForm(forms.ModelForm):    # ModelFormを継承
     username = forms.CharField(label='名前')
     ...
 ```
 - views.py
+
 ```python
 @login_required
 def user_edit(request):
@@ -2111,6 +2236,7 @@ def user_edit(request):
 
 update_session_auth_hashでセッションを更新する必要がある
   - views.py
+
 ```python
 from django.contrib.auth import update_session_auth_hash
 
@@ -2140,6 +2266,7 @@ formを追加と更新で共有することはありうる
 - forms.ModelForm.instance という使い方
   - models.py
   modelにはtiltle / userという項目がある
+
 ```python
 class Themes(models.Model):
 
@@ -2151,6 +2278,7 @@ class Themes(models.Model):
 - forms.py
 
 formには、user はないがModelFormとしてmodelをThemesで指定する
+
 ```python
 class CreateThemeForm(forms.ModelForm):
     title = forms.CharField(label='タイトル')
@@ -2162,6 +2290,7 @@ class CreateThemeForm(forms.ModelForm):
 - views.py
 
   このとき、ModelFormのuserに設定するときは、modelform.instance.項目名　としてsave() 前に設定する
+
 ```python
 def create_theme(request):
     create_theme_form = forms.CreateThemeForm(request.POST or None)
@@ -2176,6 +2305,7 @@ https://www.tohoho-web.com/bootstrap/grid.html
 .col-{n} は、画面の横幅を12個のカラムに分割し、そのうちの何個分を使用するかを指定します。
   - html
 {% raw %}
+
 ```html
 <div class="col-1 offset-1">        <!-- カラム1つ分が写真 -->
   {% if comment.user.picture %}
@@ -2194,6 +2324,7 @@ https://www.tohoho-web.com/bootstrap/grid.html
 
 - template で for を使うときに連番が振れる
   - html
+
 ```html
   {% for theme in themes %}
     <tr>
@@ -2208,6 +2339,7 @@ https://www.tohoho-web.com/bootstrap/grid.html
   - クラスベースの方が一般的？
   - viewにたくさんコードを記述しなくて済む
   - 用途に応じて継承するViewが用意されている
+
 ```python
 from django.views.generic.base import View, TemplateView, RedirectView
 from django.views.generic.detail import DetailView
@@ -2216,6 +2348,7 @@ from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteVi
 ```
 - 以降で使う共通のもの
   - models.py
+
 ```python
 from django.db import models
 from django.urls import reverse_lazy
@@ -2239,6 +2372,7 @@ class Books(BaseModel):
     #     return reverse_lazy('store:detail_book', kwargs={'pk':self.pk})
 ```
   - urls.py
+
 ```python
 from django.urls import path
 from . import views
@@ -2263,6 +2397,7 @@ urlpatterns = [
 ]
 ```
   - forms.py
+
 ```python
 from django import forms
 from django.db.models import fields
@@ -2297,6 +2432,7 @@ class BookUpdateForm(forms.ModelForm):
 ```
 
 - View（クラス）
+
 ```python
 from django.views.generic.base import View, TemplateView, RedirectView
 
@@ -2319,6 +2455,7 @@ class IndexView(View):
 - TemplateView
 
 固定ページの表示に利用
+
 ```python
 class HomeView(TemplateView):
     template_name = 'home.html'
@@ -2331,6 +2468,7 @@ class HomeView(TemplateView):
 ```
 
   - DetailView
+
 ```python
 from django.views.generic.detail import DetailView
 
@@ -2343,6 +2481,7 @@ class BookDetailView(DetailView):
         return context
 ```
   - html
+
 ```html
 <p>{{ object.name }}</p>        <!-- ←objectにmodelの値が格納されている -->
 <p>{{ object.description}}</p>
@@ -2350,6 +2489,7 @@ class BookDetailView(DetailView):
 ```
 
   - ListView
+
 ```python
 from django.views.generic.list import ListView
 
@@ -2366,6 +2506,7 @@ class BookListView(ListView):
 ```
   - html
 {% raw %}
+
 ```html
 <table>
     <tbody>
@@ -2383,6 +2524,7 @@ class BookListView(ListView):
 {% endraw %}
 
 - CreateView / UpdateView / DeleteView
+
 ```python
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -2432,10 +2574,10 @@ class BookDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('store:list_books')
-
 ```
 - html
 {% raw %}
+
 ```html
 {% if messages %}       <!-- メッセージはmessages -->
 {% for message in messages %}
@@ -2447,13 +2589,13 @@ class BookDeleteView(DeleteView):
 {{ form.as_p }}     <!-- データはform -->
 <input type="submit" value="更新">
 </form>
-
 ```
 {% endraw %}
 
 - FormView
 
   フォームを使う場合（CreateView, UpdateView, DeleteViewと何がちがう？全部FormViewでいい気がする...）
+
 ```python
 from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteView
 
@@ -2476,6 +2618,7 @@ class BookFormView(FormView):
 ```
   - html側
 {% raw %}
+
 ```html
 <form method="POST">
 {% csrf_token %}
@@ -2486,6 +2629,7 @@ class BookFormView(FormView):
 {% endraw %}
 
 - RedirectView
+
 ```python
 class BookRedirectView(RedirectView):
     url = 'https://google.com'      # 固定の方法
@@ -2502,6 +2646,7 @@ class BookRedirectView(RedirectView):
 - models.py
 
   これはユーザー情報のカスタマイズのところと同じ
+
 ```python
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
@@ -2542,6 +2687,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
 - forms.py
 
   これも自作する場合と同じ
+
 ```python
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
 
@@ -2553,6 +2699,7 @@ class UserLoginForm(AuthenticationForm):
 - views.py
 
   これがたった↓だけ
+
 ```python
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
@@ -2575,6 +2722,7 @@ class UserView(LoginRequiredMixin, TemplateView):   # ログイン要求するvi
     template_name = 'user.html'
 ```
 - settings.py
+
 ```python
 LOGIN_URL = '/accounts/user_login'      # ログイン必須のviewを開かれた場合にリダイレクトするページを指定
 LOGIN_REDIRECT_URL = '/accounts/home'   # ログイン後のページを指定
@@ -2606,16 +2754,19 @@ SESSION_COOKIE_AGE = 5      # ログイン状態保持　を作りたい場合�
 ### gunicorn
 
 - install
+
 ```bash
 pip install gunicorn
 ```
 
 - start
+
 ```bash
 gunicorn [プロジェクト名].wsgi
 ```
 
 ### secret_key 生成
+
 ```bash
 python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
@@ -2623,16 +2774,19 @@ python -c 'from django.core.management.utils import get_random_secret_key; print
 ## その他
 
 ### スタティックファイルのプロダクション
+
 ```bash
 python manage.py collectstatic
 ```
 
 ### migrateが失敗する
 - dbを直接作ったりして、djangoのmigrationsとずれていると
+
 ```bash
 python manage.py migrate AppName
 ```
 が失敗する. ↓こんなメッセージ.
+
 ```
 duplicate key value violates unique constraint "auth_permission_pkey"
 DETAIL:  Key (id)=(1) already exists.
@@ -2640,6 +2794,7 @@ DETAIL:  Key (id)=(1) already exists.
 
 - db側にmigrationした状態を持っている模様.
 	- postgresの場合、以下のテーブルのidを更新する
+
 ```sql
 SELECT setval('django_migrations_id_seq', (SELECT MAX(id) FROM django_migrations));
 SELECT setval('django_content_type_id_seq', (SELECT MAX(id) FROM django_content_type));
@@ -2648,6 +2803,7 @@ SELECT setval('auth_permission_id_seq', (SELECT MAX(id) FROM auth_permission));
 
 ### migrateで生成するテーブル（postgresqlの場合）
 - idはsequence型だから、デプロイ環境などでmigrateせず、sqlで直接データベースを作成する場合、sequenceの生成も忘れない
+
 ```sql
 create sequence next_movies_id_seq start with 1;
 CREATE TABLE IF NOT EXISTS public.next_movies (

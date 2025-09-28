@@ -8,6 +8,7 @@ title: JavaScript メモ
 
 ##  標準入力
 - process.argv
+
 ```javascript
 const  command = process.argv[2]
 ```
@@ -17,11 +18,13 @@ argv[1] : 実行されたファイル（フルパス）
 ## 配列操作
 ### 配列の中の合計
 - reduce()を使う
+
 ```javascript
 let x = [1, 2, 3]
 let e = x.reduce((acc, cur) => acc + cur)
 ```
 オブジェクトの場合は初期値を設定する
+
 ```javascript
 let x = [{count: 1, name: 'one'}, {count: 2, name: 'two'}, {count: 3, name: 'three'}]
 let e = x.reduce((acc, cur) => acc + cur.count, 0)
@@ -29,6 +32,7 @@ let e = x.reduce((acc, cur) => acc + cur.count, 0)
 
 ### 配列の中の最大/最小
 - reduse()を使う.  ↓最小はMath.min()
+
 ```javascript
 let x = [1, 2, 3]
 let e = x.reduce((pre, cur) => Math.max(pre,cur), 0)
@@ -36,6 +40,7 @@ let e = x.reduce((pre, cur) => Math.max(pre,cur), 0)
 
 ### ソート
 - sort()
+
 ```javascript
 let x = [1, 2, 3, 0]
 x.sort((a, b) =>  a - b) //昇順
@@ -47,6 +52,7 @@ x.sort((a, b) => a.age - b.age)
 
 ### すべて固定値で埋める
 - fill()を使う.
+
 ```javascript
 let arr = new Array(5)
 arr.fill(true)
@@ -54,6 +60,7 @@ arr.fill(true)
 
 ### すべての要素の判定
 - every()を使う
+
 ```javascript
 let arr = new Array(5)
 arr.fill(true)
@@ -63,6 +70,7 @@ arr.every((x) => x)
 ### 配列の作成
 - Array.from()
 ↓0〜9の配列を作る
+
 ```javascript
 Array.from({ length: 10 }, (_, index) => index);
 ```
@@ -71,6 +79,7 @@ Array.fromは第一引数に配列オブジェクトを受け取るのだが、`
 ### 配列のディープコピー
 - 配列やオブジェクトのスプレッド構文（`const newArray = [...originalArray]`）やslice（`const newArray = originalArray.slice()`）によるコピーはシャローコピーと言って、配列の中がオブジェクトだとそのままの参照になる。中身も含めてコピーするのはディープコピーと言う。
 - 中身がファンクションなどでなければ、JSON.parseとstringifyをかけるのが簡易的なディープコピー
+
 ```javascript
 const deepCopy = JSON.parse(JSON.stringify(originalArray));
 ```
@@ -78,16 +87,19 @@ const deepCopy = JSON.parse(JSON.stringify(originalArray));
 
 ## 文字列操作
 - 英数字の全角半角変換（半角→全角）
+
 ```javascript
 String.fromCharCode('1'.charCodeAt(0) + 0xFEE0)
 ```
 - 英数字の全角半角変換（全角→半角）
+
 ```javascript
 String.fromCharCode('1'.charCodeAt(0) - 0xFEE0)
 ```
 ## 算術演算
 - 四捨五入
 小数点以下第2位を四捨五入
+
 ```javascript
 const i = 1.555
 i.toFixed(2)
@@ -96,6 +108,7 @@ i.toFixed(2)
 文字列になる。
 
 - 切り捨て
+
 ```javascript
 const result = 5.9;
 const truncatedResult = Math.floor(result);
@@ -104,6 +117,7 @@ console.log(truncatedResult); // 出力: 5
 
 ## オブジェクト操作
 ### プロパティの削除: `delete`演算子
+
 ```javascript
 let obj = {name: 'john', age = 48}
 delete obj.age
@@ -114,10 +128,12 @@ delete obj.age
 ## 配列リテラルとオブジェクトリテラル
 
 - 配列リテラル
+
 ```javascript
 let coffees = ['French Roast', 'Colombian', 'Kona'];
 ```
 - オブジェクトリテラル
+
 ```javascript
 var car = { myCar: 'Saturn', getCar: carTypes('Honda'), special: sales };
 ```
@@ -128,9 +144,11 @@ var car = { myCar: 'Saturn', getCar: carTypes('Honda'), special: sales };
 > スプレッド構文は、オブジェクトや配列のすべての要素を何らかのリストに入れる必要がある場合に使用することができます。
 
 ↓これはECMAScript 2018 の新機能
+
 ```javascript
 let objClone = { ...obj }; // オブジェクトのすべてのキーと値の組を渡す
 ```
+
 ```javascript
 products = products.map( p => {
   if (p.id === req.body.id) {
@@ -147,11 +165,13 @@ products = products.map( p => {
 ### 注意
 スプレッドはシャローコピー（浅いコピー）である。
 第1階層はコピーされるが、値が配列やオブジェクトの場合は、元の値が共有されるので注意が必要。
+
 ```javascript
 const obj = { name: 'john', age: 40, sex: 'man' }
 const copyobj = {...obj}
 ```
 この場合のcopyobjはobjとは独立。
+
 ```javascript
 const obj = { group: 'beatles', menbar : [{ name : 'john'}, {name: 'paul'}]}
 const copyobj = {...obj}
@@ -161,6 +181,7 @@ const copyobj = {...obj}
 
 ## Object Destruct
 ES6？から、オブジェクトを再構成できる（縮小コピーともいうべきか）
+
 ```javascript
 product = {
   name: 'kokuyo notebook',
@@ -176,6 +197,7 @@ console.log(stock)			// -> 2000 存在するキーはデフォルト指定は無
 ```
 ## レストパターン
 スプレッド構文を左辺に使うと、先に宣言したプロパティ以外のオブジェクトを生成できる。
+
 ```javascript
 const request = {
     jobkind: 'typeA',
@@ -193,12 +215,14 @@ console.log(rest); // { jobkind: 'typeA', request: 'data', anotherProp: 'value' 
 ## import / export
 
 ### import
+
 ```javascript
 import './util.js'
 // .jsはなしても可
 import './util'
 ```
 これでファイル全体は読み込めるが、`util.js`の中の関数をimportしたスクリプトの中で使えないので、普通は次のように書く
+
 ```javascript
 import { add } from './util'
 // 関数が複数ある場合は
@@ -207,32 +231,38 @@ import { add, square } from './util'
 
 ### export
 `const`の前に`export`を書ける
+
 ```javascript
 export const square = (x) => x * x;
 ```
 #### named export
 次の書き方をnamed exportという
+
 ```javascript
 const square = (x) => x * x;
 export { square }
 ```
 #### default export
 ファイルの中で一つはdefault exportにできる
+
 ```javascript
 const square = (x) => x * x;
 export default square
 //または export { square as default }
 ```
 または
+
 ```javascript
 const square = (x) => x * x;
 export { square as default }
 ```
 または
+
 ```javascript
 export default square = (x) => x * x;
 ```
 default exportはimport側では、同じ名前でなくていい.  `{}`もいらない
+
 ```javascript
 import square2 from './util'
 ```
@@ -241,6 +271,7 @@ import square2 from './util'
 
 ES6からのclass propertyの書き方.
 ES6以前
+
 ```javascript
 class OldSyntax {
   constructor() {
@@ -257,6 +288,7 @@ const getGreeting = oldSyntax.getGreeting
 console.log(getGreeting())  // ←これはNG. `this`が効かないため
 ```
 上記はclass propertyにして以下のように書く
+
 ```javascript
 class NewSyntax {
   name = 'john'
@@ -275,26 +307,31 @@ console.log(getGreeting())  // ←OK
 fsモジュールを使う
 
 - require
+
 ```javascript
 const  fs = require("fs").promises;
 ```
 →必ずプロミスを使う
 
 - ファイル非同期読み込み（JSONパース）
+
 ```javascript
 const  data = JSON.parse(await  fs.readFile(file));
 ```
 - ファイル同期読み込み
+
 ```javascript
 const  data = fs.readFileSync(file));
 ```
 
 - ファイル/ディレクトリ群の読み込み
+
 ```javascript
 const  items = await  fs.readdir(folderName, { withFileTypes:  true});
 ```
 
 - ディレクトリ作成
+
 ```javascript
 const  salesTotalsDir = path.join(__dirname, "salesTotals");
 await  fs.mkdir(salesTotalsDir);
@@ -302,6 +339,7 @@ await  fs.mkdir(salesTotalsDir);
 存在しない親パスを含めると例外が発生するのでtry / catchをかけること
 
 - ディレクトリ作成（再帰）
+
 ```javascript
 await fs.mkdir(path.join(__dirname, "newDir", "stores", "201", "newDir"), {
   recursive: true
@@ -309,17 +347,20 @@ await fs.mkdir(path.join(__dirname, "newDir", "stores", "201", "newDir"), {
 ```
 
 - 空ファイル作成
+
 ```javascript
 await fs.writeFile(path.join(salesTotalsDir, "totals.txt"), String());
 ```
 
 - ファイル書き込み（追記）
+
 ```javascript
 await fs.writeFile(path.join(salesTotalsDir, "totals.txt"),
   `${salseTotal}\r\n`, {flag: "a"});
 ```
 ## JSON
 - jsonデータを読み込み、更新、書き込み
+
 ```javascript
 const buf = fs.readFileSync('1-json.json')
 const dataString = buf.toString()
@@ -330,6 +371,7 @@ json.age = 44
 fs.writeFileSync('1-json.json', JSON.stringify(json))	//json オブジェクトを json 文字列に変換
 ```
 stringifyはJSONオブジェクト"{}"を扱うが、リスト"[]"も扱える
+
 ```javascript
 const jsonStr = JSON.stringify({age: 48})
 const jsonStr = JSON.stringify([1,2,3])
@@ -339,6 +381,7 @@ const jsonStr = JSON.stringify([1,2,3])
 ## httpserver
 
 - 最小のhttpserverインスタンスのコード
+
 ```javascript
 const http = require('http');
 const PORT = 3000;
@@ -353,6 +396,7 @@ server.listen(PORT, () => {
 })
 ```
 - ライブラリ express を使用したhttpserver
+
 ```javascript
 const express = require("express");
 const app = express();
@@ -392,6 +436,7 @@ app.get("/products", (req, res) => {
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 ```
 - httpを呼び出すクライアント
+
 ```javascript
 const http = require("http");
 
@@ -422,6 +467,7 @@ http.get(
 以下の処理はCallbackで書いたものをPromiseで書き直したものである.  
 
 - Callbackで書いた場合
+
 ```javascript
 const doWorkCallback = (callback) => {
   setTimeout(() => {
@@ -438,6 +484,7 @@ doWorkCallback((error, result) => {
 })
 ```
 - Promiseで書いた場合
+
 ```javascript
 const doWorkPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -459,6 +506,7 @@ Promiseの場合、`resolve`または`reject`で処理が終了するので、1�
 
 ## Promise Chain
 Promiseはつなげることができる. →`.then`を何度も書ける
+
 ```javascript
 const add = (a, b) => {
   return new Promise((resolve, reject) => {
@@ -469,6 +517,7 @@ const add = (a, b) => {
 }
 ```
 ↑こんなPromiseがあるとすると...
+
 ```javascript
 add(1, 2).then((sum) => {
   console.log(sum);
@@ -484,6 +533,7 @@ add(1, 2).then((sum) => {
 })
 ```
 ↑このように入れ子にしなくても...
+
 ```javascript
 add(1, 2).then((sum) => {
   console.log(sum);
@@ -501,6 +551,7 @@ add(1, 2).then((sum) => {
 Promise chainをさらに発展させたのが async / await を使う書き方.  
 
 まずは基本形
+
 ```javascript
 const doWork = async () => { 
 }
@@ -510,6 +561,7 @@ console.log(doWork());  // return Promise { undefined }
 `async`ファンクションは必ず`Promise`を返す.  
 
 中身を入れたのがこれ↓
+
 ```javascript
 const doWork = async () => {
   throw new Error('something wrong')	//catchに返すならコチラ
@@ -524,6 +576,7 @@ doWork().then((result) => {
 ```
 ↑この書き方では特にPromiseと変わらない.  
 awaitを使うと↓こうなる.  
+
 ```javascript 
 const add = (a, b) => {
   return new Promise((resolve, reject) => {

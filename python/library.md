@@ -6,10 +6,12 @@ title: Python ライブラリメモ
 
 ## Flask
 - 起動
+
 ```bash
 flask run
 ```
 - ポート指定で起動
+
 ```bash
 flask run --port 5001
 ```
@@ -19,6 +21,7 @@ flask run --port 5001
 
 ## pprint
 - 辞書型オブジェクトを改行、インデントして表示するのに便利
+
 ```python
 from pprint import pprint
 

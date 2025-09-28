@@ -22,6 +22,7 @@ webページのURLにアクセスできる.
 `navigator.geolocation`
 
 現在地（緯度、経度）の取得
+
 ```javascript
 navigator.geolocation.getCurrentPosition((position) => {
   console.log(position.coords.latitude, position.coords.longitude);
@@ -56,19 +57,23 @@ const newQueryString = queryParams.toString(); // "name=John&age=31&city=New+Yor
 
 `window.localStorage`
 保存
+
 ```javascript
 localStorage.setItem('name','paul')
 ```
 取り出し
+
 ```javascript
 localStorage.getItem('name')
 ```
 数値は保存できない。文字列のみ
+
 ```javascript
 localStorage.setItem('age',48)
 localStorage.getItem('age') # '48'が返る
 ```
 なのでJSON文字列で保存する
+
 ```javascript
 jsonStr = JSON.stringify({age: 48})
 localStorage.setItem('data', json)

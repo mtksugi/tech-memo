@@ -21,11 +21,13 @@ googleの軽量LLMである、gemma3をローカルで動かす
 叩くとコマンドで対話型で試せる
 
 ないモデルはそのままダウンロードしにいき、ロードする。
+
 ```bash
 ollama run phi4
 ```
 
 ダウンロードするだけの場合
+
 ```bash
 ollama pull phi4
 ```
@@ -34,6 +36,7 @@ ollama pull phi4
 
 すでにollamaでwebサーバが建っている。ポート: 11434
 以下を実行できる
+
 ```bash
 curl http://localhost:11434/api/generate -d '{
   "model": "gemma3",
@@ -66,6 +69,7 @@ options | オブジェクト | 任意 | モデル固有の追加設定（高度�
 ollama list
 ```
 参考のサイズ
+
 ```
 NAME                  ID              SIZE      MODIFIED          
 deepseek-r1:latest    0a8c26691023    4.7 GB    5 minutes ago        

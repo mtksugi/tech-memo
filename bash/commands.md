@@ -5,6 +5,7 @@ title: Bash コマンドメモ
 # bash 色々
 
 ## フォルダの中のファイルをランダムに更新日付を変更する
+
 ```bash
 ls |sort -R |xargs -I % sh -c 'touch %;sleep 1;
 ```
@@ -18,17 +19,20 @@ ls |sort -R |xargs -I % sh -c 'touch %;sleep 1;
 
 
 ## フォルダの中のファイル数を調べる
+
 ```bash
 ls -1 | wc -l
 ```
 wcはファイル、標準入力の行数や文字数を表示するコマンド
 
 サブディレクトリ含む場合は
+
 ```bash
 find /path/to/directory -type f | wc -l
 ```
 
 ## フォルダサイズ
+
 ```bash
 du -h -s [ディレクトリ名]
 ```
@@ -39,6 +43,7 @@ du -h -s [ディレクトリ名]
 
 ## 1行ずつパイプ: xargs
 findした結果のファイルを`ls`して表示する
+
 ```bash
 find -name "hoge.php" | xargs ls -l
 ```
@@ -46,11 +51,13 @@ find -name "hoge.php" | xargs ls -l
 ## 環境変数表示
 
 ### 表示
+
 ```bash
 printenv
 ```
 
 ### 設定
+
 ```bash
 export PATH="/user/local/bin:$PATH"
 ```
@@ -59,11 +66,13 @@ export PATH="/user/local/bin:$PATH"
 - ~/.bash_profile または ~/.bashrc
 
 ### ファイルに以下を書き込む
+
 ```bash
 export HOGE_VARIABLE="value"
 ```
 
 ### プロファイルの読み込み
+
 ```bash
 source ~/.bash_profile
 ```
@@ -71,6 +80,7 @@ source ~/.bash_profile
 
 ## グループにユーザを追加する
 /etc/groupを修正する
+
 ```
 compiler:x:978:cpanel,user1
 ```
@@ -106,18 +116,21 @@ ex : bitnami@host.net:/tmp
 - 行数指定 : -n
 
 ## find
+
 ```bash
 find -name "[ファイル名]"
 ```
 でサブディレクトリを含めて検索する
 
 Macでは以下でルートを検索
+
 ```bash
 find / -name "[ファイル名]"
 ```
 
 ### 日付指定
 更新日付が5/18のもの
+
 ```bash
 find [ディレクトリ名] -type f -newermt 2023-05-18 ! -newermt 2023-05-19
 ```
@@ -127,32 +140,38 @@ newerct: 作成日時
 newerat: アクセス日時  
 
 ### ディレクトリ除外
+
 ```bash
 find [ディレクトリ名] -type f -not -path "[除外ディレクトリ]/*"
 ```
 
 ## grep
 拡張子指定で検索する
+
 ```bash
 grep -r "[検索キーワード]" --include="*.[拡張子]" [ディレクトリ]
 ```
 
 ## tar
 tgzファイルの解凍
+
 ```bash
 tar zxfv hoge.tgz
 ```
 tgzファイルに圧縮
+
 ```bash
 tar czfv hoge.tgz [フォルダ名]
 ```
 tgzファイルの中身の表示
+
 ```bash
 tar ztfv hoge.tgz
 ```
 
 ## rsync
 windowsでいうrobocopy.  Macで外部媒体へのコピーしたらめちゃ速かった
+
 ```bash
 rsync -av --delete /sourceDir/ /destinationDir/
 ```
@@ -162,6 +181,7 @@ rsync -av --delete /sourceDir/ /destinationDir/
 --delete: ミラーコピーでコピー先のみのファイルを削除
 
 sshを使用したリモートサーバへのコピーも可能。
+
 ```bash
 rsync -avP -e "ssh -i key.pem" /Volumes/source ec2-user@remotehost:/dest/
 ```
@@ -171,6 +191,7 @@ rsync -avP -e "ssh -i key.pem" /Volumes/source ec2-user@remotehost:/dest/
 --inplace: 一時ファイルを作らず直接上書き（ディスクI/O減）
 
 ### コピー後のチェック
+
 ```bash
 rsync -avcn -e "ssh -i key.pem" /Volumes/source ec2-user@remotehost:/dest/
 ```
@@ -179,51 +200,62 @@ rsync -avcn -e "ssh -i key.pem" /Volumes/source ec2-user@remotehost:/dest/
 
 ## apt / yum
 - ソフトがあるか確認する
+
 ```bash
 sudo apt info ffmpeg
 ```
+
 ```bash
 yum search ffmpeg
 ```
 - 例えばffmpegをインストールする
+
 ```bash
 sudo apt-get -y install ffmpeg
 ```
+
 ```bash
 sudo yum install ffmpeg
 ```
 
 ## curl
 - curlでダウンロード: -OL
+
 ```bash
 curl -OL https://~~~/xxx.zip
 ```
 ※macにwgetはないのでcurlを使う
 
 - ヘッダのみ表示（状態の確認など）: -I
+
 ```bash
 curl -I https://google.com
 ```
 - プロキシを使う: --proxy
+
 ```bash
 curl --proxy [IPアドレス]:[ポート番号] https://google.com
 ```
 - クライアントにつながっている送信元IPアドレスを調べる
+
 ```bash
 curl -4 ifconfig.me
 ```
 
 ## 日付表示
+
 ```bash
 date
 ```
 
 ## フォルダの中のファイルをランダムに更新日付を変更する
+
 ```bash
 ls |sort -R |xargs -I % sh -c 'touch %;sleep 1;
 ```
 
 ## ドメインからIPを確認する
+
 ```bash
 dig [ドメイン]
 ```
@@ -243,6 +275,7 @@ uwatuki.com.		4340	IN	A	163.44.185.209
 ;; SERVER: 172.20.10.1#53(172.20.10.1)
 ;; WHEN: Mon Dec 12 20:13:39 JST 2022
 ;; MSG SIZE  rcvd: 56環境変数表示
+
 ```bash
 printenv
 ```
@@ -264,6 +297,7 @@ ex : bitnami@host.net:/tmp
 - 行数指定 : -n
 
 ## find
+
 ```bash
 find -name "[ファイル名]"
 ```
@@ -272,6 +306,7 @@ find -name "[ファイル名]"
 
 ## 空いているポートを調べる
 使っているプログラムもわかる
+
 ```bash
 lsof -i:[port番号]
 ```
@@ -280,11 +315,13 @@ lsof -i:[port番号]
 Macのロゼッタのコマンド
 
 現在稼働しているアーキテクチャの確認
+
 ```bash
 arch
 ```
 
 x86でbashを起動する
+
 ```bash
 arch -x86_64 bash
 ```
@@ -316,20 +353,24 @@ nanoはテキストエディタなのでバイナリや制御文字が入って�
 
 
 ## 乱数
+
 ```bash
 echo $RANDOM
 ```
 - 四則演算
+
 ```bash
 echo $((1+1))
 ```
 - 変数の四則演算（剰余）
+
 ```bash
 echo $(($RANDOM%60))
 ```
 
 ## crontab
 ### 日、月、曜日の指定
+
 ```text
 * * * * * command
 │││││
@@ -339,6 +380,7 @@ echo $(($RANDOM%60))
 │└───────────── 時間 (0 - 23)
 └─────────────── 分 (0 - 59)
 ```
+
 ```text
 m h  dom mon dow   command
 # minute (m), hour (h), day of month (dom), month (mon),
@@ -348,12 +390,14 @@ m h  dom mon dow   command
 
 ## crontab
 ### cron再起動
+
 ```bash
 sudo systemctl restart cron
 ```
 
 ### cronのランダム実行
 - ↓60分以内のランダムスリープ. これをcommandのシェルに入れる.
+
 ```bash
 sleep $(($RANDOM%60))m
 ```
@@ -363,6 +407,7 @@ sleep $(($RANDOM%60))m
 が出るので、`./[ファイル名]`で実行する
 
 ### cronで結果をsyslogに書き込む
+
 ```
 0 21 * * * [command]  2>&1 | logger -t [ログタイトル] 
 ```
@@ -374,6 +419,7 @@ sleep $(($RANDOM%60))m
 
 ### cronの環境変数読み込み
 - ~/.bashrc , .bash_profileに書き込んでいる個別の環境変数がcrontabに読み込めない場合、/etc/environmentに書き込む
+
 ```
 HOGE_VARIABLE="value"
 ```
@@ -381,12 +427,14 @@ HOGE_VARIABLE="value"
 
 ## sshで切断されても継続する...tmux
 - 切断しても継続するセッション開始
+
 ```bash
 tmux
 ```
 を実行後にそのセッション内で使用する  
 
 - 切断後にもう一度そのセッションに入る
+
 ```bash
 tmux a
 ```
@@ -394,26 +442,31 @@ tmux a
 - Ctrl+B →Dで抜ける（"Ctrl+b"でコマンドモード、"d"（detouch）で抜ける）
 
 - 実行中のセッションを表dd示
+
 ```bash
 tmux ls
 ```
 
 - セッションを指定して入る場合
+
 ```bash
 tmux a -t [表示された先頭の番号]
 ```
 
 - セッションを強制終了
+
 ```bash
 tmux kill-session -t [セッション番号]
 ```
 
 ## その他のバックグラウンド実行
 ### &を後ろにつける
+
 ```bash
 mysql -u root -p your_database < aaa.sql &
 ```
 ### nohup
+
 ```bash
 nohup mysql -u root -p your_database < aaa.sql > mysql_output.log 2>&1 &
 ```
@@ -421,11 +474,13 @@ nohup mysql -u root -p your_database < aaa.sql > mysql_output.log 2>&1 &
 tmuxに類似のライブラリにscreenがある
 
 ## ssh-keygen
+
 ```bash
 ssh-keygen -t rsa [ファイル名]
 ```
 -b: ビット数の指定.  デフォルトは3072でデフォルトで十分と言われる. 
 ex.
+
 ```bash
 ssh-keygen -t rsa -b 4096 [ファイル名]
 ```
@@ -438,21 +493,25 @@ id_rsa.pub: 公開鍵. sakuraなどは利用者側で作るので、この中身
 ## sed
 ### 置換
 `PAGE_CHECKSUM=1 TRANSACTIONAL=0`を置換する
+
 ```bash
 sed 's/PAGE_CHECKSUM=1 TRANSACTIONAL=0//g' prev.sql > post.sql
 ```
 ### バイナリを含む場合
 先頭に`LC_ALL=C`をつける
+
 ```bash
 LC_ALL=C 's/PAGE_CHECKSUM=1 TRANSACTIONAL=0//g' prev.sql > post.sql
 ```
 ### 特定の行を削除する
 14891行目を削除する
+
 ```bash
 sed '14891d' hoge.sql > hoge_fixed.sql
 ```
 ### 特定の行を修正する
 14891行目の`PAGE_CHECKSUM=1 TRANSACTIONAL=0`を置換する
+
 ```bash
 sed '14891s/PAGE_CHECKSUM=1 TRANSACTIONAL=0//' hoge.sql > hoge_fixed.sql
 ```
@@ -461,6 +520,7 @@ sed '14891s/PAGE_CHECKSUM=1 TRANSACTIONAL=0//' hoge.sql > hoge_fixed.sql
 jsonファイルを扱うライブラリ
 
 ### インストール
+
 ```bash
 # macOS
 brew install jq
@@ -473,10 +533,12 @@ sudo yum install jq
 ```
 
 ### ファイルの中身を表示
+
 ```bash
 cat hoge.json | jq
 ```
 #### オプション
+
 ```bash
 # 整形せずに出力（-c）
 jq -c '.' data.json
@@ -489,6 +551,7 @@ jq -r '.name' data.json
 ```
 
 ### 基本的な使い方
+
 ```bash
 # 特定のキーの値を取得
 cat data.json | jq '.name'
@@ -500,6 +563,7 @@ cat data.json | jq '.items | length'
 cat data.json | jq '.items[0]'
 ```
 #### 配列の場合
+
 ```bash
 # 配列の各要素のiconを取得
 cat data.json | jq '.[].icon'
@@ -509,6 +573,7 @@ cat data.json | jq '.[] | .icon'
 ```
 
 ### フィルタリング
+
 ```bash
 # 条件に合う要素を抽出
 cat data.json | jq '.items[] | select(.price > 1000)'
@@ -518,6 +583,7 @@ cat data.json | jq '.items[] | {name: .name, price: .price}'
 ```
 
 ### 加工
+
 ```bash
 # 配列の要素を変換
 cat data.json | jq '.items[] | .price * 1.1'

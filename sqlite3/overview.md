@@ -5,15 +5,18 @@ title: SQLite3 メモ
 # How to use sqlite3 
 
 ## 使い方
+
 ```bash
 sqlite3 
 ```
 
 - プロンプトが出たら、.openでデータベースファイルに接続したりする
+
 ```bash
 .quit
 ```
 または
+
 ```bash
 ;
 ```
@@ -21,6 +24,7 @@ sqlite3
 
 ### headers 
 デフォルトでselectするとカラム名が表示されない.  
+
 ```sql
 .headers on
 ```
@@ -29,16 +33,19 @@ sqlite3
 ## メタsql
 
 ### テーブル一覧
+
 ```sql
 .tables
 ```
 
 ### カラム一覧
+
 ```sql
 PRAGMA table_info([テーブル名]);
 ```
 
 ## CSVでインポート
+
 ```sql
 .mode csv
 .import --skip 1 /path/to/user_1001.csv user
@@ -48,20 +55,24 @@ PRAGMA table_info([テーブル名]);
 ## sql
 
 ### 現在時刻、タイムスタンプ
+
 ```sql
 current_timestamp
 ```
 
 ### 日付演算・表示
 - 現在の3日前（日時で返す）
+
 ```sql
 datetime(current_timestamp ,'-3 days')
 ```
 - 現在の3日前（日付で返す）
+
 ```sql
 date(current_timestamp ,'-3 days')
 ```
 - 日付表示
+
 ```sql
 strftime('%Y-%m-%d', timestamp)http://localhost:3000/summaria
 ```
@@ -78,11 +89,13 @@ create table table1_bak as select * from table1;
 
 ### 副問合せによる更新
 - joinによる更新はサポートしていないらしい。次のsqlは通らない
+
 ```sql
 update manual_contents_list set description = manual_contents_list_bk.description from manual_contents_list join manual_contents_list_bk
 on manual_contents_list.pagepath = manual_contents_list_bk.pagepath;
 ```
 - 代替はこれ
+
 ```sql
 UPDATE manual_contents_list
 SET description = (
@@ -98,6 +111,7 @@ WHERE EXISTS (
 ```
 
 ### テーブルのリネーム
+
 ```sql
 ALTER TABLE old_table_name RENAME TO new_table_name;
 ```

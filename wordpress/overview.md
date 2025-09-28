@@ -6,11 +6,13 @@ title: WordPress メモ
 
 ## 投稿REST APIの有効化
 httpの場合、ユーザー管理画面のアプリケーションパスワードが有効にならない
+
 ```php
 define( 'WP_ENVIRONMENT_TYPE', 'development' );
 ```
 をwp-config.phpに入れればよいとあるが、有効にならない.  
 function.phpに以下を入れる
+
 ```php
 // api使用のためにアプリケーションパスワードを強制表示
 add_filter( 'wp_is_application_passwords_available', '__return_true' );
@@ -26,6 +28,7 @@ wp-json/wp/v2/media/のAPIは、パーマリンク設定がデフォルトの`/?
 ## ページごとのアクセス数取得
 プラグインなしで自作する場合、カスタムフィールドにアクセス数カラムを追加して、記事が表示されるごとにそのカラムをカウントアップする.  
 1. function.phpに以下を追加
+
 ```php
 function set_post_views($post_id) {
     $custom_key = 'post_views_count';
@@ -41,6 +44,7 @@ function set_post_views($post_id) {
 ```
 
 2. single.phpに以下を追加
+
 ```php
 <?php
 if ((!is_user_logged_in() || !current_user_can('administrator')) && !is_robots()) {
@@ -52,6 +56,7 @@ if ((!is_user_logged_in() || !current_user_can('administrator')) && !is_robots()
 ## 投稿一覧、固定ページ一覧に最終更新日を追加
 
 function.phpに以下を追加
+
 ```php
 /* 投稿一覧、固定ページ一覧に最終更新日を追加 */
 function add_posts_columns_last_modified( $columns ) {
@@ -139,6 +144,7 @@ WP Offload Mediaプラグインで静的コンテンツをCDNしているので�
 #### mysqlで実行
 
 mysql cliの起動
+
 ```bash
 mysql -u root -p[password] [DB_NAME]
 ```
@@ -146,6 +152,7 @@ mysql -u root -p[password] [DB_NAME]
 -pでEnterするとパスワードを聞いてきて、そこでパスワードを入れてもaccess deniedとなるクソ仕様...
 
 実行したsql  
+
 ```sql
 show tables;	//テーブル一覧表示
 rename table wp_as3cf_items to bk_20221203_wp_as3cf_items;
@@ -184,6 +191,7 @@ delete FROM wp_options WHERE option_name LIKE '%transient_as3cf%' OR option_name
 .htaccessの削除、index.phpの削除、ディレクトリの書き込み権限変更の3行のスクリプトを作って実行する。  
 
 そして、正しい.htaccess、index2.phpを保存する。
+
 ```txt: .htaccess
 # BEGIN WordPress
 RewriteEngine On
@@ -196,6 +204,7 @@ RewriteCond %{REQUEST_URI} !^/index2.php$
 RewriteRule ^$ /index2.php [L]
 # END WordPress
 ```
+
 ```php: index2.php
 <?php define( 'WP_USE_THEMES', true );require __DIR__ . '/wp-blog-header.php';
 ```

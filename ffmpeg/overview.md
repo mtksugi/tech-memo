@@ -9,6 +9,7 @@ title: FFmpeg メモ
 画質を落とさず高圧縮で変換
 
 ex:
+
 ```bash
 ffmpeg -i in.mp4 -filter_complex "[0:v] fps=5,scale=640:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse=dither=none" out.gif
 ```
@@ -18,6 +19,7 @@ ffmpeg -i in.mp4 -filter_complex "[0:v] fps=5,scale=640:-1,split [a][b];[a] pale
 -crfオプション 数値を上げれば画質低で高圧縮
 
 ex.
+
 ```bash
 ffmpeg -i in.mp4 -crf 32 out.mp4
 ```
@@ -27,6 +29,7 @@ ffmpeg -i in.mp4 -crf 32 out.mp4
 -1は縦横比をあわせる
 
 ex.
+
 ```bash
 ffmpeg -i in.mp4 -vf scale=800:-1  out.mp4
 ```
@@ -47,6 +50,7 @@ ffmpeg -encoders | grep h264
 - ただし、-c:v のみだとcpuエンコードの画質より劣化するっぽい. ビットレート( -b:v )を指定してビットレートを上げるとよい
 
 ex.
+
 ```bash
 ffmpeg -i in.mp4 -c:v h264_videotoolbox -b:v 560k out.mp4 
 ```

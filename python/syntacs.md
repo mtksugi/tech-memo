@@ -12,17 +12,20 @@ title: Python 文法メモ
 - コメント `#`
 - 複数行コメント `"""    """` （ダブルクォート3つ）
 - 変数代入
+
 ```python
 a = b = 'aaa'
 ```
 とするとaにもbにも'aaa'が入る
 
 ## プリント
+
 ```python
 print('test {}'.format(a))  # {}の順で変数を.format()に入れる
 print(f'{val}')  # f''で{}に直接変数を入れる
 ```
 ### プリントで前ゼロ編集
+
 ```python
 number = 42
 padded_number = f"{number:05}"
@@ -30,11 +33,13 @@ print(padded_number)  # 出力: 00042
 ```
 
 ## 標準入力
+
 ```python
 a = input('入力してください')
 ```
 
 ## コマンドライン引数
+
 ```python
 import sys
 print(sys.argv)
@@ -46,6 +51,7 @@ print(sys.argv)
 - 定数という概念はない　全部大文字で定義するコーディング規約　`KING_OF_ANIMAL`など
 
 - if文は最後にコロン`:`を入れる
+
 ```python
 if age < 20:
     print('aaa')
@@ -82,6 +88,7 @@ else:
 
 ### 前ゼロ編集
 - `str.zfill()`
+
 ```python
 number = 42
 padded_number = str(number).zfill(5)
@@ -89,6 +96,7 @@ print(padded_number)  # 出力: 00042
 ```
 
 - `str.rjust()`
+
 ```python
 number = 42
 padded_number = str(number).rjust(5, '0')
@@ -98,6 +106,7 @@ print(padded_number)  # 出力: 00042
 紛らわしい気がするが、`rjust`が左に文字埋め。`ljust`が右に文字埋め。
 
 ### 数値のカンマ表示
+
 ```python
 number = 1234567890
 formatted_number = f"{number:,}"
@@ -118,6 +127,7 @@ print(formatted_number)  # 出力: 1,234,567,890
 - 長さ：`len(list_)`
 
 - `extend`はjavascriptでいうところの `...` のスプレッド構文
+
 ```python
 l = [1, 2, 3]
 ll = [4, 5, 6]
@@ -138,6 +148,7 @@ l.extend(ll)
 参考：[Python公式ドキュメント - ソート HOW TO](https://docs.python.org/ja/3/howto/sorting.html#sortinghowto)
 
 例：
+
 ```python
 post_views_count_list = [
     {'id': 1850, 'post_views_count': '2'}, 
@@ -147,6 +158,7 @@ post_views_count_list = [
 ```
 
 これを`post_views_count`の降順でソートするには：
+
 ```python
 sorted_list = sorted(post_views_count_list, key=lambda x: int(x['post_views_count']), reverse=True)
 ```
@@ -200,6 +212,7 @@ sorted_list = sorted(post_views_count_list, key=lambda x: int(x['post_views_coun
 
 ## enumerate
 - インデックスと値を同時に取得
+
 ```python
 for index, value in enumerate(list):
     pass
@@ -207,12 +220,14 @@ for index, value in enumerate(list):
 
 ## zip
 - 複数のリストを取得する
+
 ```python
 for v1, v2 in zip(list1, list2):
     pass
 ```
 
 ## while
+
 ```python
 count = 0
 while count < 10:
@@ -226,6 +241,7 @@ while count < 10:
 
 ## セイウチ演算子
 変数の代入と評価を同時に実行する
+
 ```python
 # 通常の方法
 num = 10
@@ -239,6 +255,7 @@ if (num := 10) > 5:
 
 
 ## 例外
+
 ```python
 try:
     pass
@@ -250,17 +267,20 @@ finally:
     pass
 ```
 exceptの種類：`FileNotFoundError` / `ZeroDivisionError` / `IndexError` / `Exception`...
+
 ```python
 raise  # 例外を起こす
 ```
 
 ## 正規表現
 `re`モジュールを使う
+
 ```python
 import re
 ```
 
 正規表現検索
+
 ```python
 test = 'hoge....'
 match = re.search(r'id=(.+)', text)
@@ -271,6 +291,7 @@ if match:
 
 
 ## 関数
+
 ```python
 def name():
     pass
@@ -284,6 +305,7 @@ def name():
 - 複数返り値：`return a, b`→呼び出し側はタプルで返る。`a, b = name()` という書き方も可。 
 
 ## グローバル変数
+
 ```python
 global val
 val = 'hoge'
@@ -291,6 +313,7 @@ val = 'hoge'
 - 関数`id()`：メモリアドレスが確認できる
 
 ## inner関数/nonlocal変数
+
 ```python
 def outer_func():
     def inner_func():  # 外からアクセスできない関数
@@ -299,11 +322,13 @@ def outer_func():
 ```
 
 ## 文字列からクラスを取得
+
 ```python
 target_class = globals().get('クラス名')
 ```
 
 ## ジェネレータ関数
+
 ```python
 def generator_func():
     for n in range(5):
@@ -330,10 +355,12 @@ sys.getsizeof()  # メモリ使用量の表示
 
 ## ラムダ式
 1行で関数を書く。無名関数
+
 ```python
 l = lambda x: x * x
 ```
 ↓
+
 ```python
 def func(x):
     return x * x
@@ -344,12 +371,14 @@ l = func(x)
 
 ## 三項演算子
 - ifを1行で書く
+
 ```python
 x = 0 if y > 10 else 1
 ```
 
 ## 再帰
 例：
+
 ```python
 def sample(a):
     if a < 0:
@@ -360,6 +389,7 @@ def sample(a):
 ```
 
 ## リスト内包表記
+
 ```python
 list_a = (1,2,3,'a',4)
 list_b = [x*2 for x in list_a]  # list_aから取り出した x に2をかけた値をlist_bに格納 ...javascriptのArray.map()に相当
@@ -367,6 +397,7 @@ list_b = [x*2 for x in list_a if type(x) == int]  # list_aから取り出した�
 list_b = next((x for x in list_a if x == y), None)  # list_aから取り出した値がyと一致するものを返す...javascriptのArray.find()に相当
 ```
 - 内包表記は連続できる
+
 ```python
 data = [{'label': 'A', 'prob': 0.9}, {'label': 'B', 'prob': 0.8}]
 flat_list = [item for d in data for item in (d['label'], d['prob'])]
@@ -377,6 +408,7 @@ print(flat_list)
 
 ## デコレータ関数
 例：
+
 ```python
 def mydec(func):
     def wrapper(*args, **kwargs):
@@ -402,6 +434,7 @@ def func_b(*args, **kwargs):
 関数をリスト型変数に一括実行すること
 
 例：
+
 ```python
 def func(x):
     return x * 2
@@ -416,12 +449,14 @@ map_a = map(lambda x : x * 2, list_a)  # これも同義。ラムダ関数を使
 mapの第2引数以降はリスト型で渡す。func(x,y,z)なら `map(func, [1,2,3], [1,2,3], [1,2,3])`のようになる
 
 ## クラス定義
+
 ```python
 class Class_name:
     def method_name(self, ...):  # インスタンスメソッドにはselfの引数が必要
         pass
 ```
 リストにいれたclassを生成できる
+
 ```python
 l = ["Apple", "Banana", Class_name]
 myclass = l[2]()
@@ -431,6 +466,7 @@ myclass = l[2]()
 `help()`でディスクリプションとメソッド/プロパティ一覧も取得できる
 
 ## インスタンス変数とクラス変数
+
 ```python
 class SampleA():
     class_val = 'class val'  # クラス変数→インスタンス間で共有される
@@ -446,6 +482,7 @@ print(ins.__class__.class_val)  # クラス変数へのアクセス　方法2
 ```
 
 ## クラスのコンストラクタ
+
 ```python
 class SampleA():
     class_val = 'class val'
@@ -458,6 +495,7 @@ ins = SampleA('hello', 'world')
 ```
 
 ## デコンストラクタ
+
 ```python
 class SampleA():
     class_val = 'class val'
@@ -492,6 +530,7 @@ class Human():
 ```
 
 ## 特殊メソッド
+
 ```python
 class Human():
     def __str__(self):  # 例えばprintは必ずstrが呼ばれるので、printのときに返す値を定義できる
@@ -511,6 +550,7 @@ class Human():
 ```
 
 ## クラスの継承
+
 ```python
 class Person:  # 親クラス
     def __init__(self, name, age) -> None:
@@ -537,6 +577,7 @@ class Employee(Person):  # 継承クラス
 ```
 
 ## クラスの多重継承
+
 ```python
 class ClassA:  # 親クラス1
     def __init__(self, name) -> None:
@@ -622,6 +663,7 @@ print(human._Human__name)  # こう書くとアクセスできるが通常しな
 
 ## カプセル化、setter/getter
 - 方法①
+
 ```python
 class Human:
     def __init__(self, name, age) -> None:
@@ -644,6 +686,7 @@ print(human.name)  # getterが呼ばれる
 ```
 
 - 方法②
+
 ```python
 class Human:
     def __init__(self, name, age) -> None:
@@ -723,6 +766,7 @@ with WithTest() as t:
 ```
 
 これを実行すると：
+
 ```
 init called
 enter called
@@ -775,15 +819,18 @@ __all__ = ['base2_msg']  # *でimportしたときに読み込まれる関数リ�
 `import json`でjsonモジュールを読み込んで使う。
 
 - オブジェクトのjson文字列化
+
 ```python
 json.dumps(['foo', {'bar': ('baz', None, 1.0, 2)}])
 ```
 日本語が含まれる場合、`\u3000`などの文字コードになるため、`ensure_ascii=False`を指定する
+
 ```python
 json.dumps(['foo', {'bar': ('baz', None, 1.0, 2)}], ensure_ascii=False)
 ```
 
 - json文字列のオブジェクト化
+
 ```python
 json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')
 ```

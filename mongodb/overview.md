@@ -10,15 +10,18 @@ title: MongoDB メモ
 バイナリ版をダウンロードして解凍.  
 解凍したものを/User/[name]の下にコピー.  
 /usr/local/binにリンクする.  
+
 ```bash
 sudo ln -s /Users/[name]/mongodb/bin/* /usr/local/bin/
 ```
 ## Run
 dataフォルダを作って、mongdを実行.  
+
 ```bash
 mongod --dbpath /Users/[name]/mongodb/data
 ```
 公式はこれ.    
+
 ```bash
 mongod --dbpath /usr/local/var/mongodb --logpath /usr/local/var/log/mongodb/mongo.log --fork
 ```
@@ -26,11 +29,13 @@ mongod --dbpath /usr/local/var/mongodb --logpath /usr/local/var/log/mongodb/mong
 
 ## Stop
 Macの場合、killでよい
+
 ```bash
 kill [mongodのプロセスID]
 ```
 
 linuxなら
+
 ```bash
 mongod --shutdown
 ```

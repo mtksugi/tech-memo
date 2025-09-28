@@ -21,6 +21,7 @@ sudo spctl --master-disable
 
 
 ## dmgファイルのマウントをコマンドで
+
 ```bash
 hdiutil mount [dmgファイル名]
 ```
@@ -48,6 +49,7 @@ ctrl + command + space
 ## スピーカープロセスの再起動
 
 音がでなくなったときに
+
 ```
 sudo killall coreaudiod
 ```
@@ -58,14 +60,17 @@ sudo killall coreaudiod
 ### スリープの一時停止
 
 MacBook を閉じてもスリープしないようにする
+
 ```bash
 caffeinate -i
 ```
 ディスプレイだけスリープしない
+
 ```bash
 caffeinate -d
 ```
 1時間だけスリープしない
+
 ```bash
 caffeinate -t 3600
 ```
@@ -99,6 +104,7 @@ pythonライブラリのmysqlclientを再インストールしても、ライブ
 
 `arch`で今のターミナルの起動アーキテクチャがわかる。`arm` or `i386`と出力される  
 デフォルトはarm版だが、
+
 ```bash
 arch -x86_64 bash
 ```
@@ -108,6 +114,7 @@ arch -x86_64 bash
 
 x86版は /usr/local/bin, /usr/local/Cellarを使う。
 `brew`自体は
+
 ```
 /usr/local/bin/brew -> ../Homebrew/bin/brew
 ```

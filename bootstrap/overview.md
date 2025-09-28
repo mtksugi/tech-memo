@@ -21,6 +21,7 @@ bootstrap5からは xxl として1400px以上が追加
 ## 色
 
 - 文字色
+
 ```
 class="text-primary"
 class="text-secondary"
@@ -28,6 +29,7 @@ class="text-success"
 ```
 
 - 背景色
+
 ```
 class="bg-primary"
 class="bg-secondary"
@@ -52,14 +54,17 @@ ex.
 
 - divにh1を指定してh1と同じ書式
 ex.
+
 ```css
 <div class="h1">
 ```
 - display-1でh1よりさらに大きい文字
+
 ```
 <div class="display-1">
 ```css
 - ulタグで行頭なしにする
+
 ```
 <ul class="list-unstyled">
     <li>
@@ -68,6 +73,7 @@ ex.
 ```
 
 - ulタグで要素を横並びにする
+
 ```css
 <ul class="list-inline">
     <li class="list-inline-item">
@@ -76,27 +82,32 @@ ex.
 ## 画像
 
 - 画像をレスポンシブな表示にする
+
 ```css
 <img src="..." class="img-fluid">
 ```
 
 - 画像をサムネイル形式にする（画像の周りにボーダーを表示する）
+
 ```css
 <img src="..." class="img-fluid img-thumbnail">
 ```
 ## テーブル
 
 - 行を縞模様
+
 ```css
 <table class="table table-striped">
 ```
 
 - マウスホバーで色を変える
+
 ```css
 <table class="table table-hover">
 ```
 
 - サイズを小さくする（サイズの指定）
+
 ```css
 <table class="table table-sm">  ...スマホ用？余白が少しカットされる
 ```
@@ -104,15 +115,18 @@ ex.
 ## ボーダーの色と角
 
 - 色
+
 ```css
 <img src="" class="border border-primary">
 ```
 - 角を丸くする
+
 ```css
 <img src="" class="rounded">    ...-sizeで角の丸の大きさを指定可能（ver5から）
 ```
 
 - 画像を丸く
+
 ```css
 <img src="" class="rounded-circle"> ...円形
 <img src="" class="rounded-pill">   ...カプセル形
@@ -148,11 +162,13 @@ w-nn
 
 - 親要素の高さの何%にするかを指定する
 h-nn
+
 ```css
 <div class="h-25">...wと同じ
 ```
 
 - 画像のmax-width:100%, max-height:100%
+
 ```css
 <img src="..." class="mw-100">
 <img src="..." class="mh-100">
@@ -164,6 +180,7 @@ h-nn
 
 - 何に使う？説明書きとか？
 ex. 
+
 ```css
 <div class="alert alert-primary" role="alert">
   A simple primary alert—check it out!
@@ -173,11 +190,13 @@ ex.
 ## バッジ
 
 - テキスト横に吹き出しっぽく目立たせるボックスを表示
+
 ```css
 <h1>Example heading <span class="badge bg-secondary">New</span></h1>
 ```
 
 - カタチを丸く
+
 ```css
 <span class="badge rounded-pill bg-primary">Primary</span>
 ```
@@ -185,16 +204,19 @@ ex.
 ## ボタン
 
 - 通常
+
 ```css
 <button type="button" class="btn btn-primary">Primary</button>
 ```
 
 - 白抜き
+
 ```css
 <button type="button" class="btn btn-outline-primary">Primary</button>
 ```
 
 - 全幅ボタンは display と gap を組み合わせる
+
 ```css
 <div class="d-grid gap-2">
   <button class="btn btn-primary" type="button">Button</button>
@@ -203,6 +225,7 @@ ex.
 ```
 
 - aタグ、inputタグにも使える
+
 ```css
 <a class="btn btn-primary" href="#" role="button">Link</a>
 <input class="btn btn-primary" type="button" value="Input">

@@ -70,6 +70,7 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/intro-structure.html#intro-stru
 ### 低レベルAPIと高レベルAPI
 
 - クライアント〜: 低レベル
+
 ```python
 client = boto3.client('s3')
 ```
@@ -172,10 +173,12 @@ client = boto3.client('s3')
 - バージョン管理機能がある。バージョンを作成（発行という）すると、その状態をロックする。ARNには末尾にバージョン（:1など）を付与して使用する。（→修飾ARN）
 
 修飾ARNの例: 
+
 ```
 arn:aws:lambda:aws-region:acct-id:function:helloworld:42
 ```
 バージョンなしを非修飾ARNという
+
 ```
 arn:aws:lambda:aws-region:acct-id:function:helloworld
 ```
@@ -291,35 +294,43 @@ PostgreSQL
 ### コマンド
 
 - リクエストの認証情報を確認する
+
 ```bash
 aws sts get-caller-identity
 ```
 - S3バケットを消す
+
 ```bash
 aws s3 rb s3://~
 ```
  - デバッグする
+
 ```bash
 aws s3 rb s3://~ --debug
 ```
 - `deleteme`という名前のバケット名のバケットをリストする
+
 ```bash
 aws s3api list-buckets --output text --query 'Buckets[?contains(Name, `deleteme`) == `true`] | [0].Name'
 ```
 - ポリシーの確認
+
 ```bash
 aws iam get-policy-version --policy-arn [ポリシーARN] --version-id v1
 ```
 - ロールにポリシーをアタッチする
+
 ```bash
 aws iam attach-role-policy --policy-arn [ポリシーARN] --role-name [ロール名]
 ```
 - ロールにアタッチされたポリシーを確認する
+
 ```bash
 aws iam list-attached-role-policies --role-name [ロール名]
 ```
 - バケットを作成する
 	- us-east-1: バージニア北部の場合と他のリージョンでパラメータが違うので以下のような書き方。
+
 ```python
     if current_region == 'us-east-1':
         response = s3Client.create_bucket(Bucket=name)

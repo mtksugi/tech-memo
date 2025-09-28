@@ -17,6 +17,7 @@ title: Vue 3 & Firebase (Udemy) メモ
 
 
 `index.html`
+
 ```html
     <script src="https://unpkg.com/vue@3.0.2"></script>
 ```
@@ -27,6 +28,7 @@ title: Vue 3 & Firebase (Udemy) メモ
 
 
 `index.html`
+
 ```html
     <script src="app.js"></script>
 ```
@@ -36,6 +38,7 @@ title: Vue 3 & Firebase (Udemy) メモ
 
 
 `app.js`
+
 ```javascript
 const app = Vue.createApp({
     data() {
@@ -56,6 +59,7 @@ app.mount('#app')
 
 
 `index.html`
+
 ```html
     <div id="app">
         <p>{{ title }} - {{ author }} - {{ age }} </p>
@@ -74,6 +78,7 @@ clickイベントなどでVueの中の変数にアクセスする場合は、v-o
 
 
 index.html
+
 ```html
         <button v-on:click="age++">age increment</button>
         <div @click="changeTitle">click here </div>
@@ -84,6 +89,7 @@ index.html
 
 
 index.html
+
 ```html
             <span v-if="showBooks">Hide Books</span>
             <span v-else>Show Books</span>
@@ -98,6 +104,7 @@ v-elseは直前にv-ifがあるときに有効
 
 
 index.html
+
 ```html
         <div v-show="showBooks">currently show books</div>
 ```
@@ -117,6 +124,7 @@ v-showはFalseの場合、display:noneを入れる
 
 
 index.html
+
 ```html
         <div class="box" @mouseover="handleEvent">mouse over</div>
         <div class="box" @mouseleave="handleEvent">mouse leave</div>
@@ -124,6 +132,7 @@ index.html
         <div class="box" @mousemove="handleMousemove">position {{x}} -{{y}}</div>
 ```
 app.js
+
 ```javascript
     methods:{
         toggleShowBooks(){
@@ -145,6 +154,7 @@ app.js
 
 
 index.html
+
 ```html
             <ul>
                 <li v-for="book in books">
@@ -157,6 +167,7 @@ ul / li じゃなくても可能。普通にdivでも可
 
 
 app.js
+
 ```javascript
 const app = Vue.createApp({
     data() {
@@ -174,6 +185,7 @@ const app = Vue.createApp({
 
 
 index.html
+
 ```html
             <li v-for="book in books" :class="{ fav:book.fav }" @click="changeFav(book)">
 ```
@@ -181,6 +193,7 @@ changeFavでv-forの要素であるbookオブジェクトをそのまま渡す
 
 
 app.js
+
 ```javascript
         changeFav(book){
             book.fav = !book.fav
@@ -194,12 +207,14 @@ app.js
 
 
 index.html
+
 ```html
                     <img :src="book.img" :alt="book.title">
 ```
 
 
 app.js
+
 ```javascript
             books:[
                 {title:"book 1", author:"author 1", img:"asset/1.jpg"},
@@ -214,6 +229,7 @@ class 指定の動的な設定
 
 
 index.html
+
 ```html
                 <li v-for="book in books" :class="{ fav:book.fav }">
 ```
@@ -222,6 +238,7 @@ class="{ fav:book.fav}" でbook.favがtrueなら、favクラスが有効、false
 
 
 app.js
+
 ```javascript
             books:[
                 {title:"book 1", author:"author 1", img:"asset/1.jpg", fav:true},
@@ -238,6 +255,7 @@ dataでもmethodsでもない、dataの操作など
 
 
 app.js
+
 ```javascript
 const app = Vue.createApp({
     data() {
@@ -262,6 +280,7 @@ const app = Vue.createApp({
 
 
 index.html
+
 ```html
             <li v-for="book in filterBooks" :class="{ fav:book.fav }" @click="changeFav(book)">
 ```
@@ -284,18 +303,21 @@ https://nodejs.org/ja/download/
 
 
 - Vue CLI をインストールする
+
 ```bash
 npm install -g @vue/cli
 ```
 
 
 - 任意のフォルダでプロジェクトを作成する
+
 ```bash
 vue create [プロジェクト名]
 ```
 
 
 - VS Codeで開く
+
 ```bash
 cd [プロジェクトフォルダ]
 code .
@@ -303,6 +325,7 @@ code .
 
 
 ### ローカルサーバ起動
+
 ```bash
 npm run serve
 ```
@@ -310,6 +333,7 @@ npm run serve
 
 - win8×vue17ではERR_OSSL_EVP_UNSUPPORTEDのエラーになる
 `package.json`
+
 ```json
   "scripts": {
     "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
@@ -344,6 +368,7 @@ src
 
 - app divに入るのは、src/App.vueのtemplateタグ内
 `App.vue`
+
 ```vue
 <template>
 ...
@@ -382,6 +407,7 @@ scriptタグ →→ vueのことを書く
 
 
 `App.vue` / template tag
+
 ```vue
   <input type="text" ref="name">
   <button @click="handleClick">click me</button>
@@ -390,6 +416,7 @@ ref=[オブジェクト名]を定義
 
 
 `App.vue` / script tag
+
 ```javascript
   methods :{
     handleClick() {
@@ -413,6 +440,7 @@ App.vue
 
 
 `App.vue`
+
 ```vue
 <template>
   <h1>{{ title }}</h1>
@@ -437,6 +465,7 @@ export default {
 </script>
 ```
 `Modal.vue`
+
 ```vue
 <template>
     <div class="backdrop">
@@ -466,6 +495,7 @@ src/assets/global.cssを追加する
 
 
 `main.js`
+
 ```javascript
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -477,6 +507,7 @@ createApp(App).mount('#app')
 
 
 `Modal.vue`
+
 ```vue
 <template>
     <div class="backdrop">
@@ -503,6 +534,7 @@ createApp(App).mount('#app')
 
 - 親Vueから子Vueにデータの受け渡し
 `App.vue`
+
 ```vue
 <template>
   <Modal :header="header" :text="text" theme="sale" />  <!-- ...子に渡すデータを書く. ":"コロン付きにすることで、=の後ろが↓のdataであることを示す. コロンなしはModal側に文字列として渡る -->
@@ -528,6 +560,7 @@ export default {
 
 
 `Modal.vue`
+
 ```vue
 <template>
     <div class="backdrop">
@@ -552,6 +585,7 @@ export default {
 
 
 Modal.vue
+
 ```vue
 <template>
     <div class="backdrop" @click="closeModal">  # ...ここにクリックイベント
@@ -576,6 +610,7 @@ emitの中で、親の何を呼ぶかは親側で決める
 
 
 `App.vue`
+
 ```vue
 <template>
   <h1>{{ title }}</h1>
@@ -609,14 +644,17 @@ export default {
 
 - 細かなクリックイベント
     - click.rightで右クリックのみ
+
 ```html
   <button @click.right="toggleModal">open modal</button>
 ```
 - click.altやshiftでAlt + Shift クリックで発火
+
 ```html
   <button @click.alt="toggleModal">open modal</button>
 ```
 - click.selfで、子要素の中では発火しなくする. 子要素以外の自分の領域のみで発火
+
 ```html
     <div class="backdrop" @click.self="closeModal">
         <div class="modal" :class="{ sale: theme === 'sale' }">
@@ -628,6 +666,7 @@ export default {
 
     - 名前なしslot
 `App.vue`
+
 ```vue
 <template>
     <Modal :header="header" :text="text" theme="sale" @close="toggleModal" >    # Modalはこのようにタグで書ける.
@@ -637,6 +676,7 @@ export default {
 </template>
 ```
 `Modal.vue`
+
 ```vue
 <template>
     <div class="backdrop" @click.self="closeModal">
@@ -650,6 +690,7 @@ export default {
 
 - 名前ありslot
 `App.vue`
+
 ```vue
 <template>
     <Modal :header="header" :text="text" theme="sale" @close="toggleModal" >
@@ -665,6 +706,7 @@ export default {
 
 
 `Modal.vue`
+
 ```vue
 <template>
     <div class="backdrop" @click.self="closeModal">
@@ -686,6 +728,7 @@ export default {
 
 
 `App.vue`
+
 ```vue
 <template>
   <div v-if="showModal">
@@ -747,6 +790,7 @@ index.htmlのappではない場所にModalを入れることができる
 
 
 `App.vue`
+
 ```vue
 <template>
   <h1>{{ title }}</h1>
@@ -771,6 +815,7 @@ index.htmlのappではない場所にModalを入れることができる
 
 
 `index.html`
+
 ```html
   <body>
     <noscript>
@@ -790,6 +835,7 @@ index.htmlのappではない場所にModalを入れることができる
 
 
 - `App.vue`
+
 ```vue
 <template>
 <h1>Ninja Reaction Timer</h1>
@@ -838,6 +884,7 @@ export default {
 
 
 `Block.vue`
+
 ```vue
 <template>
   <div class="block" v-if="showBlock" @click="stopTimer">click me</div> # showBlockがTrueなら表示. stopTimerイベント発火
@@ -882,6 +929,7 @@ export default {
 
 
 `Results.vue`
+
 ```vue
 <template>
   <p class="results">Result Time: {{ score }} ms</p>    # scoreの表示
@@ -922,6 +970,7 @@ export default {
 
 
 `App.vue`
+
 ```vue
 <template>
   <SignupForm />
@@ -944,6 +993,7 @@ export default {
 
 
 `SignupForm.vue`
+
 ```vue
 <template>
   <form @submit.prevent="handleSubmit">   # submit.preventで、本来のsubmitを抑止する
@@ -1035,6 +1085,7 @@ export default {
 
 
 SPAではなく、いくつかのページに遷移するアプリケーションをRouterで作る
+
 ```bash
 vue create
 ```
@@ -1042,6 +1093,7 @@ vue create
 
 
 - フォルダ構成
+
 ```
 router
     └─ index.js
@@ -1059,6 +1111,7 @@ App.vue
 
 
 - `index.js`
+
 ```javascript
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'       # import 定義
@@ -1104,6 +1157,7 @@ const routes = [        # path と name と componentを指定. name が App.vue
 
 
 - `App.vue`
+
 ```vue
 <template>
   <div id="nav">
@@ -1138,6 +1192,7 @@ export default {
 
 
 - `NotFound.vue`
+
 ```vue
 <template>
   <h2>404</h2>
@@ -1147,6 +1202,7 @@ export default {
 
 
 - `Jobs.vue`
+
 ```vue
 <template>
   <h1>Jobs</h1>
@@ -1181,6 +1237,7 @@ export default {
 
 
 - `JobDetails.vue`
+
 ```vue
 <template>
     <div v-if="job">        # jobがとれたら表示、という意味でv-ifが必要. ないと常に非表示になってしまう
@@ -1224,6 +1281,7 @@ export default {
 
 
 - インストール
+
 ```bash
 npm install -g json-server
 ```
@@ -1233,6 +1291,7 @@ npm install -g json-server
 - dataファイル
 このプロジェクト内でテスト的にやるなら
 `data/db.json`
+
 ```json
 {
     "jobs": [
@@ -1245,6 +1304,7 @@ npm install -g json-server
 
 
 を作って
+
 ```bash
 json-server --watch data\db.json
 ```
@@ -1285,6 +1345,7 @@ export default {
 
 
 - フォルダ構成
+
 ```
 components
     ├─ FilterNav.vue
@@ -1302,6 +1363,7 @@ App.vue
 
 
 - `App.vue`
+
 ```vue
 <template>
   <Navbar />    # ヘッダーのナビゲーションバーのcomponentsで定義する
@@ -1319,6 +1381,7 @@ export default {
 
 
 - `Navbar.vue`
+
 ```vue
 <template>
   <nav class="main-nav">
@@ -1338,6 +1401,7 @@ export default {
 
 
 - `Home.vue`
+
 ```vue
 <template>
   <div class="home">
@@ -1397,6 +1461,7 @@ export default {
 
 
 - `FilterNav.vue`
+
 ```vue
 <template>
     <nav class="filter-nav"> 
@@ -1423,6 +1488,7 @@ export default {
 
 
 - `SingleProject.vue`
+
 ```vue
 <template>
   <div class="project" :class="{ complete : project .complete }"> # completeの値によってclassを変更. 表示を変える
@@ -1477,6 +1543,7 @@ export default {
 
 
 - `AddProject.vue`
+
 ```vue
 <template>
   <form @submit.prevent="handleSubmit">   # 追加フォーム. submit.preventでformのクリックイベントを独自関数にする
@@ -1523,6 +1590,7 @@ EditProject.vueもAddProjectと同様なので省略
 
 - `index.html`
 googleマテリアルアイコンは以下。
+
 ```html
   <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -1544,6 +1612,7 @@ googleマテリアルアイコンは以下。
 
 
 - `Home.vue`
+
 ```vue
 <template>
   <div class="home">
@@ -1587,6 +1656,7 @@ export default {
 
 
 - `Tags.vue`
+
 ```vue
 <template>
   <div class="home">
@@ -1634,12 +1704,11 @@ export default {
   }
 }
 </script>
-
-
 ```
 
 
 - `getPosts.js`
+
 ```javascript
 import { ref } from 'vue'   # ...html側に返す変数はrefが必要
 
@@ -1680,6 +1749,7 @@ export default getPosts   #...export defaultが必要
 
 
 - `PostList.vue`
+
 ```vue
 <template>
   <div class="post-list">
@@ -1706,10 +1776,9 @@ export default {
     }
 }
 </script>
-
-
 ```
 - `Spinner.vue`
+
 ```vue
 <template>
   <div class="spin"></div>
@@ -1743,6 +1812,7 @@ export default {
 
 
 - npm インストール
+
 ```bash
 npm install firebase
 ```
@@ -1750,6 +1820,7 @@ npm install firebase
 
 - connect setting
   - `src/firebase/config.js`にfirebaseのプロジェクトの設定のSDKの設定と構成のnpmの部分をコピーして貼り付ける
+
 ```javascript
 import firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -1780,6 +1851,7 @@ export {projectFirestore}
 
 - `getPost.js`
   - firebaseでの複数レコード取得
+
 ```javascript
 import { ref } from 'vue'
 import { projectFirestore  } from '../firebase/config'    # ...import
@@ -1820,6 +1892,7 @@ export default getPosts
 
 - `getPost.js`
   - firebaseの1件取得
+
 ```javascript
 import { ref } from 'vue'
 import { projectFirestore } from '../firebase/config'
@@ -1867,6 +1940,7 @@ export default getPost
 
 
 - `Create.vue`
+
 ```vue
 <template>
   ...
@@ -1926,6 +2000,7 @@ export default {
 
 
 - `Details.vue`
+
 ```vue
 <template>
   ...
@@ -1975,6 +2050,7 @@ export default {
 
 
 - `RealTime.vue`
+
 ```vue
 <template>
   <h1>Real Time data</h1>
@@ -2021,6 +2097,7 @@ export default {
 
 
 - Welcome.vue
+
 ```vue
 <template>
   <div class="welcome container">
@@ -2062,6 +2139,7 @@ export default {
 
 
 - LoginForm.vue
+
 ```vue
 <template>
   <form @submit.prevent="handleSubmit">
@@ -2099,6 +2177,7 @@ export default {
 </script>
 ```
 - useLogin.js
+
 ```javascript
 import { ref } from 'vue'
 import { projectAuth } from '../firebase/config'    # configの中でfirebase.auth()をexport
@@ -2138,6 +2217,7 @@ export default useLogin
 
 
 - SignupForm.vue
+
 ```vue
 <template>
   <form @submit.prevent="handleSubmit">
@@ -2181,6 +2261,7 @@ export default {
 
 
 - useSignup.js
+
 ```javascript
 import { ref } from 'vue'
 import { projectAuth } from '../firebase/config'
@@ -2222,6 +2303,7 @@ export default useSignup
 
 
 - Navbar.vue
+
 ```vue
 <template>
   <nav v-if="user">
@@ -2284,6 +2366,7 @@ export default {
 
 
 - router/index.js
+
 ```javascript
 import { createRouter, createWebHistory } from 'vue-router'
 import Welcome from '../views/Welcome.vue'
@@ -2334,6 +2417,7 @@ const router = createRouter({
 export default router
 ```
 - main.js
+
 ```javascript
 import { projectAuth } from './firebase/config';
 
@@ -2352,6 +2436,7 @@ projectAuth.onAuthStateChanged( () => {
 #### リアルタイムチャットの実装
 
 - Chatroom.vue
+
 ```vue
 <template>
     <div class="container">
@@ -2397,6 +2482,7 @@ export default {
 ```
 
 - NewChatForm.vue
+
 ```vue
 <template>
   <form>
@@ -2441,6 +2527,7 @@ export default {
 
 
 - useCollection.js
+
 ```javascript
 import { ref } from 'vue'
 import { projectAuth, projectFirestore } from '../firebase/config'
@@ -2465,6 +2552,7 @@ export default userCollection
 
 
 - ChatWindow.vue
+
 ```vue
 <template>
   <div class="chat-window">
@@ -2510,6 +2598,7 @@ export default {
 
 
 - `getCollection.js`
+
 ```javascript
 import { ref, watchEffect } from 'vue'
 import { projectFirestore } from '../firebase/config'
@@ -2552,6 +2641,7 @@ export default getCollection
 
 
 firebase-tools のインストール
+
 ```bash
 npm install -g firebase-tools
 ```
@@ -2567,6 +2657,7 @@ firebase init
 ```bash
 npm run build
 ```
+
 ```bash
 firebase deploy
 ```
@@ -2574,6 +2665,7 @@ firebase deploy
 
 firestoreの書き込み/読み込み制御
 `firestore.rules`
+
 ```javascript
 rules_version = '2';
 service cloud.firestore {
@@ -2585,6 +2677,7 @@ service cloud.firestore {
 }
 ```
 firestore.rulesだけ反映する場合は、
+
 ```bash
 firebase deploy --only firestore:rules
 ```
@@ -2593,6 +2686,7 @@ firebase deploy --only firestore:rules
 
 
 `firebase.json`
+
 ```json
 { 
   "firestore" : {     # ...ココ追加する
@@ -2630,6 +2724,7 @@ firebase deploy --only firestore:rules
 
 - `App.vue`
   - AppにNavbarを入れて、どの画面でもNavbarが表示される
+
 ```vue
 <template>
   <Navbar />
@@ -2652,6 +2747,7 @@ export default {
 
 - `Navbar.vue`
   - NavbarはCreatePlaylist / UserPlaylists / Signup / Login / Logoutを表示
+
 ```vue
 <template>
     <div class="navbar">
@@ -2707,6 +2803,7 @@ export default {
 
 - `Home.vue`
   - Home.vueでListView. Listviewは、UserPlaylistsでも使い回す
+
 ```vue
 <template>
   <div class="home">
@@ -2737,6 +2834,7 @@ export default {
 
 
 - `PlaylistDetails.vue`
+
 ```vue
 <template>
   <div v-if="error" class="error">{{ error }}</div>
@@ -2824,6 +2922,7 @@ export default {
 
 
 - `AddSong.vue`
+
 ```vue
 <template>
   <div class="add-song">
@@ -2879,6 +2978,7 @@ export default {
 
 
 - `CreatePlaylist.vue`
+
 ```vue
 <template>
     <form @submit.prevent="handleSubmit">
@@ -2964,6 +3064,7 @@ export default {
 
 
 - `getCollection.js`
+
 ```javascript
 import { ref, watchEffect } from 'vue'
 import { projectFirestore } from '../firebase/config'
@@ -3006,8 +3107,6 @@ const getCollection  = (collection, query) => {
 
 
 export default getCollection
-
-
 ```
 
 
@@ -3021,6 +3120,7 @@ export default getCollection
 
 - `useCollection.js`
   - ドキュメントの追加
+
 ```javascript
 import { ref } from 'vue'
 import { projectFirestore } from '../firebase/config'
@@ -3052,12 +3152,11 @@ const userCollection  = (collection) => {
 
 
 export default userCollection
-
-
 ```
 - `useDocument.js`
   - ドキュメントの削除と更新
     - useCollectionでドキュメントの追加、useDocumentで更新・削除に分けているのは、追加はprojectFirestore.collection().addに対し、更新・削除は、projectFirestore.collection().doc().delete(),update()だからだと思われる
+
 ```javascript
 import { ref } from 'vue'
 import { projectFirestore } from '../firebase/config'
@@ -3112,6 +3211,7 @@ export default useDocument
 
 
 - `useStorage.js`
+
 ```javascript
 import { projectStorage } from '../firebase/config'
 import { ref } from 'vue';
@@ -3165,6 +3265,7 @@ export default useStorage
 
 
 - `router/index.js`
+
 ```javascript
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
@@ -3239,6 +3340,7 @@ const routes = [
 
 
 - `config.js`
+
 ```javascript
 import { initializeApp } from "firebase/app";       // firebase9
 import { getFirestore } from 'firebase/firestore'   // firebase9
@@ -3268,6 +3370,7 @@ export { db, auth }
 
 
 - getCollection.js
+
 ```
 import { ref, watchEffect } from 'vue'
 
@@ -3309,13 +3412,12 @@ const getCollection  = (c, q) => {
 
 
 export default getCollection
-
-
 ```
 
 ### vueのeslint
 #### コンパイル時の未使用変数のチェックをオフ
 - vueの場合、直下に`.eslintrc.js`がある
+
 ```javascript
 module.exports = {
   rules: {

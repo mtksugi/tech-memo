@@ -11,17 +11,20 @@ tunnelを使うためにインストールしたが、cloudflareで事足りた�
 https://dashboard.ngrok.com/get-started/setup/macos
 
 - インストール
+
 ```bash
 brew install ngrok
 ```
 
 - config
+
 ```bash
 ngrok config add-authtoken 2zkx0xxx
 ```
 
 - tunnel
     - 1つ起動する
+
 ```bash
 ngrok http http://localhost:5000
 ```
@@ -48,6 +51,7 @@ endpoints:
 ngrok.ymlファイルは、"/Users/[ユーザー名]/Library/Application Support/ngrok/ngrok.yml"
 
 - start
+
 ```bash
 ngrok start web api
 ```

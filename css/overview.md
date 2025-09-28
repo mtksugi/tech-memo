@@ -7,25 +7,30 @@ title: CSS メモ
 ## 改行をそのまま表示する
 
 - 改行は活かす.  連続するホワイトスペースを詰めて一つにする.
+
 ```css
 white-space: pre-line;
 ```
 - 改行は活かす.  連続するホワイトスペースはそのまま.
+
 ```css
 white-space: pre-wrap;
 ```
 
 ## リンクの下線を消す
+
 ```css
 text-decoration: none;
 ```
 
 ## リストのマークを消す
+
 ```css
 list-style: none;
 ```
 
 ## 画像の正円
+
 ```css
 border-radius: 50%;
 ```
@@ -42,6 +47,7 @@ flexアイテムが2つあって、1つ目を一番上に、2つ目を一番下�
     </div>
 </div>
 ```
+
 ```css
 .chat__main {
     display: flex;

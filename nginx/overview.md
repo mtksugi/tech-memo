@@ -5,11 +5,13 @@ title: Nginx メモ
 # nginx etc
 
 - install
+
 ```bash
 brew install nginx
 ```
 
 - start / stop
+
 ```bash
 nginx
 nginx -s stop
@@ -22,6 +24,7 @@ nginx -s stop
 など
 
 - django gunicornとの連携
+
 ```conf
     server {
         listen       8080;
@@ -44,12 +47,14 @@ nginx -s stop
 ```
 
 - sitemap.xmlへのリダイレクト追加（/opt/bitnami/var/staticに配置した場合）
+
 ```conf
     location /sitemap.xml {
         root /opt/bitnami/var/static;
     }
 ```
 - トップページへのリダイレクト設定
+
 ```conf
     location /__media__/ {
         return 301 https://$host;
@@ -57,6 +62,7 @@ nginx -s stop
 ```
 
 - text圧縮設定:  serverディレクティブに追加→pagespeed insightでモバイルが+4の効果
+
 ```conf
     gzip on;
     gzip_types      text/plain application/xml;

@@ -8,6 +8,7 @@ title: AWS CLI メモ
 
 ## configure
 ~/.awsに`config`と`credentials`ができる.  
+
 ```bash
 aws configure
 ```
@@ -15,6 +16,7 @@ aws configure
 
 ## profile
 configファイルはプロファイルごとに設定し、CLIをプロファイルごとに実行できる。
+
 ```text: config
 [default]
 region = ap-northeast-1
@@ -24,6 +26,7 @@ output = json
 region = auto
 output = json
 ```
+
 ```text: credentials
 [default]
 aws_access_key_id = AKIxxx
@@ -34,10 +37,12 @@ aws_access_key_id = xxx
 aws_secret_access_key = xxx
 ```
 cfの部分がプロファイル名。`aws`コマンドでは以下のように指定。
+
 ```bash
 aws s3 cp [from] [to]  --profile [プロファイル名]
 ```
 boto3では以下のように指定。
+
 ```python
 import boto3
 aws_session = boto3.Session(profile_name="[プロファイル名]")
@@ -48,12 +53,14 @@ s3 = aws_session.client('s3')
 
 ### list
 /media/image/300で始まるファイルの取得
+
 ```bash
 aws s3 ls s3://s3-url/media/image/300
 ```
 
 ### upload
 カレントフォルダのファイルを全て`s3://s3-url/media/image`にアップロード
+
 ```bash
 aws s3 cp . s3://s3-url/media/image --recursive
 ```
@@ -61,6 +68,7 @@ aws s3 cp . s3://s3-url/media/image --recursive
 
 ### mv
 `s3-url/media/stream`にあるファイルをすべて`s3-url/media/movie`に移動
+
 ```bash
 aws s3 mv s3://s3-url/media/stream s3://s3-url/media/movie/ --recursive
 ```
@@ -70,10 +78,12 @@ aws s3 mv s3://s3-url/media/stream s3://s3-url/media/movie/ --recursive
 1. regionは`auto`とする。
 2. エンドポイントを指定する。
 例: aws CLIでの指定
+
 ```bash
 aws s3 cp . s3://dir  --recursive  --endpoint-url  https://[cloudflareアカウントID].r2.cloudflarestorage.com  --profile [プロファイル名]
 ```
 例: boto3の場合
+
 ```python
 import boto3
 aws_session = boto3.Session(profile_name="[プロファイル名]")

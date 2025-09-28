@@ -11,10 +11,12 @@ title: MySQL メモ
 macOS 10.14のMojaveは8.0.18.  
 
 インストール後、bash_profileにパス（/usr/local/mysql/bin）を追加する
+
 ```bash:.bash_profile
 export PATH="/usr/local/mysql/bin:$PATH"
 ```
 反映は、
+
 ```bash
 source .bash_profile
 ```
@@ -27,10 +29,12 @@ source .bash_profile
 
 - brewで入れた場合
 開始
+
 ```bash
 brew services start mysql
 ```
 停止
+
 ```bash
 brew services stop mysql
 ```
@@ -38,27 +42,32 @@ brew services stop mysql
 ## MySQL Clientの使い方
 
 - mysqlの起動
+
 ```bash
 mysql -u [ユーザ名] -p
 ```
 パスワードを聞かれるので入力する.  
 
 - データベースを指定する場合
+
 ```bash
 mysql -u [ユーザ名] -p [データベース名]
 ```
 
 - sqlの実行
+
 ```bash
 mysql -u root -p -e "select ... from tbl1" [database名] --batch --silent
 ```
 
 - sqlファイルの実行
+
 ```bash
 mysql -u root -p [database名] < [sqlファイル]
 ```
 
 - データベースに接続
+
 ```sql
 connect [データベース名]
 ```
@@ -66,31 +75,37 @@ connect [データベース名]
 ## SQL
 ### メタ情報
 - get column list
+
 ```sql
 describe [table_name];
 ```
 
 - get table list
+
 ```sql
 show tables;
 ```
 
 - get database list
+
 ```sql
 show databases;
 ```
 ### create database
+
 ```sql
 create database [db名];
 ```
 
 ### テーブルバックアップ
+
 ```sql
 create table table1_bak as select * from table1;
 ```
 
 ### 日付関数
 - UTC時間を日本時間で表示する
+
 ```sql
 CONVERT_TZ(current_timestamp, 'UTC', 'Asia/Tokyo')
 ```
@@ -98,6 +113,7 @@ CONVERT_TZ(current_timestamp, 'UTC', 'Asia/Tokyo')
 ## 設定 Configuration
 ### config file
 /usr/local/mysql/my.ini　などに書く。
+
 ```text
 [mysqld]
 max_allowed_packet=128M
@@ -109,6 +125,7 @@ Macはシステム設定にMySQLがあり、そこで設定したりする。
 ### 接続関係
 
 - 最大接続数の表示
+
 ```sql
 SHOW GLOBAL VARIABLES LIKE 'max_connections';
 ```
@@ -116,15 +133,18 @@ SHOW GLOBAL VARIABLES LIKE 'max_connections';
 AWS RDSの場合は、`DBInstanceClassMemory/12582880`で計算されて設定されるらしい。
 
 - 最大接続数の変更
+
 ```sql
 SHOW VARIABLES LIKE 'max_connections';
 ```
 
 - 現在の接続数の表示
+
 ```sql
 show status where `variable_name` = 'Threads_connected';
 ```
 ### パケットサイズ（SQLサイズ）
+
 ```sql
 SHOW VARIABLES LIKE  'max_allowed_packet';
 ```
@@ -153,9 +173,11 @@ export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$PATH"
 
 ## rootのパスワード変更
 mysqlにログイン
+
 ```bash
 mysql -u root -p
 ```
+
 ```sql
 FLUSH PRIVILEGES;
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'newpassword';
@@ -171,6 +193,7 @@ mysql8.0からパスワードの認証方式が違うらしい。
 `caching_sha2_password`が新しい認証方式。  
 `mysql_native_password`にすると接続できるようになる。  
 以下で変更する。（mysqlのuserごと）  
+
 ```sql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
 ```

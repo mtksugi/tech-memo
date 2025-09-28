@@ -22,6 +22,7 @@ site-packageの下の`__pycache__`は含めない
 
 - ローカルでanacondaを使っているとそれの標準ライブラリは.venvには入らないので注意
 - 今回は、`pydantic-core`というライブラリが含まれておらず、lambda側で実行できなかった。追加するにはローカルのpythonバージョンがあっていないので、pipでコンパイルしながらダウンロードした。
+
 ```bash
 pip install \
 --platform manylinux2014_x86_64 \

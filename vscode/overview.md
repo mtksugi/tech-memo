@@ -38,6 +38,7 @@ title: VS Code メモ
 ## デバッグ
 
 デバッグを起動すると.vscode/launch.jsonファイルができる
+
 ```json
 {
   "version": "0.2.0",
@@ -60,6 +61,7 @@ title: VS Code メモ
 pythonの仮想環境を指定するには、`python`にpythonのパス、ディレクトリを指定するには`cwd`を指定する。  
 `${workspaceFolder}`とするとvscodeのワークスペースを指定できる。続けてサブディレクトリを指定することも可能。
 ex.
+
 ```
 "python": "/Users/[name]/opt/anaconda3/envs/summariaenv/bin/python" ,
 "cwd": "${workspaceFolder}/summaria_app",

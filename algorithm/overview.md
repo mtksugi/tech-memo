@@ -18,6 +18,7 @@ title: アルゴリズム メモ
 とすると汎用的に使えるらしい...  
 
 - 疑似コード
+
 ```javascript
 const binary_search = (value) => {
   let left = -1
@@ -36,6 +37,7 @@ const binary_search = (value) => {
 }
 ```
 もしくは↓とすればleft, rightのどちらが大きいかも気にすることがない
+
 ```javascript
 const binary_search = (value) => {
   let ng = -1
@@ -62,6 +64,7 @@ const binary_search = (value) => {
 こうすると計算量はO(n)にできる！
 
 - 疑似コード
+
 ```javascript
 let right = 0;
 for (let left = 0; left < n; left++) {
@@ -89,6 +92,7 @@ for (let left = 0; left < n; left++) {
 > まだ訪れていない頂点を優先的に探索
 > （未訪問の頂点を見つけたら即座に訪問）
 - 疑似コード
+
 ```javascript
 const dfs = (x) => {
   for (const u of xの隣接点集合) {
@@ -104,6 +108,7 @@ const dfs = (x) => {
 > まずは, 現在の頂点に隣接する頂点を全て訪問
 > 終わったら, “次の”頂点へ探索を進める
 - 疑似コード
+
 ```javascript
 const bfs = (s) => {
   Q.push(s)
@@ -131,6 +136,7 @@ const bfs = (s) => {
 > 始点 s からの最短経路が決まった頂点を１つずつ増やす
 
 - アルゴリズム
+
 ```javascript
 v ∈ V
 v: 全頂点

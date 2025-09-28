@@ -16,6 +16,7 @@ node hoge.js
 でjsファイルの実行
 
 - inspect
+
 ```bash
 node inspect hoge.js
 ```
@@ -50,6 +51,7 @@ Callback queueは**メインプログラム終了後に動く**ため、`console
 逆に言えばCallback関数を実行させるには、メインプログラムを終了させなければいけない.  
 
 例えば、
+
 ```javascript
 const geocode = (address) => {
   const data = {
@@ -61,6 +63,7 @@ const geocode = (address) => {
 console.log(geocode('kasugai'))
 ```
 この同期プログラムで、`geocode`の中身を非同期で返したい場合、こうなる
+
 ```javascript
 const geocode = (address, callback) => {	//引数にCallback関数をとり...
   setTimeout(() => {
@@ -76,16 +79,19 @@ geocode('kasugai', (data) => {
 })
 ```
 ## package.jsonの作り方
+
 ```bash
 npm init
 ```
 -y で各値をデフォルトで作成
+
 ```bash
 npm init -y
 ```
 
 ## package.json
 - 例
+
 ```javascript
 {
   "name": "tailwind-trader-api",
@@ -104,11 +110,13 @@ npm init -y
 ### scripts
 scriptsには start, test, build などのアクションを書く  
 これらのアクションは、
+
 ```bash
 npm run <アクション>
 ```
 で実行できる  
 startとtestはrunを省略して  
+
 ```bash
 npm start
 ```
@@ -126,6 +134,7 @@ npm start
 最新の "パッチ" バージョンに更新します。
 
 ### devdependencies
+
 ```bash
 npm install nodemon --save-dev
 ```
@@ -139,6 +148,7 @@ npm install nodemon --save-dev
 - pythonのdjango-environにあたるものに、env-cmdライブラリがある
 - こちらはプロダクションはOSの環境変数を使って、開発中にファイルを参照するように使う
 - プロジェクト直下に`.env`ファイルを置く
+
 ```env
 PORT=3000
 SENDGRID_API_KEY=xxx
@@ -146,6 +156,7 @@ CONNECTION_URL=mongodb://127.0.0.1:27017/task-manager-api
 JWT_TOKEN_SECRET=secretKey
 ```
 - package.jsonの`script`に↓のように書く
+
 ```json
   "scripts": {
     "start": "node src/index.js",
@@ -153,6 +164,7 @@ JWT_TOKEN_SECRET=secretKey
   },
 ```
 - ↓このように呼び出せる
+
 ```javascript
 sendgridMail.setApiKey(process.env.SENDGRID_API_KEY)
 ```
@@ -160,6 +172,7 @@ sendgridMail.setApiKey(process.env.SENDGRID_API_KEY)
 ## eslint
 ### コンパイル時の未使用変数のチェックをオフ
 - vueの場合、直下に`.eslintrc.js`がある
+
 ```javascript
 module.exports = {
   rules: {
@@ -201,23 +214,27 @@ request.end()
 
 ### list
 引数なしで実行すると大量に出てくるのでdepthで深さを指定する. 0始まり
+
 ```bash
 npm list --depth=0
 ```
 
 ### install
+
 ```bash
 npm install
 ```
 でpackage.jsonのdependenciesに記載のライブラリを記載のバージョンルールに従ってインストールする.
 
 - ライブラリ指定の場合
+
 ```bash
 npm install node-fetch@x.x.x
 ```
 @以下をlatestにすると最新をインストール
 
 - 開発環境にインストール
+
 ```bash
 npm install jest --save-dev
 ```
@@ -230,6 +247,7 @@ npm install jest --save-dev
 
 ### audit force
 vulnerabilitiesが表示されたら
+
 ```bash
 npm audit fix --force
 ```
@@ -243,6 +261,7 @@ npm audit fix --force
 nodeのバージョンを管理する.  
 
 ### install
+
 ```bash
 brew install nvm
 ```
@@ -257,6 +276,7 @@ export NVM_DIR="$HOME/.nvm"
 ```
 
 ### use
+
 ```bash
 nvm install 18
 nvm use 18
@@ -264,10 +284,12 @@ nvm use 18
 で指定したバージョンをインストール、使用する.   
 
 ### プロジェクトディレクトリで特定のバージョンのnodeを使用する
+
 ```.nvmrc
 v18.20.6
 ```
 でルートディレクトリに.nvmrcファイルを作成する
+
 ```bash
 nvm use
 ```
@@ -279,6 +301,7 @@ nvm use
 ## M3Macに変えたときにnodeをarm64にするためにおこなったこと
 
 1. あまり記憶がないが、homebrewにnodeが単体で入っていた(nvmで管理していないもの)ので、それをアンイストールした
+
 ```bash
 brew uninstall node
 ```
@@ -287,11 +310,13 @@ PATHの先頭に`/opt/homebrew/bin:/opt/homebrew/sbin:/`が入っていて、必
 
 2. nvmもarm64にした（上のnvmのインストールとbash_profileの編集を参照）
 3. node v18をインストールした
+
 ```bash
 nvm install 18
 nvm use 18
 ```
 4. プロジェクトディレクトリで以下を実行
+
 ```bash
 rm -rf node_modules
 rm package-lock.json
@@ -303,6 +328,7 @@ npm install  --legacy-peer-deps
 ## npmライブラリ
 
 ### nodemon
+
 ```bash
 nodemon app.js
 ```
@@ -310,12 +336,14 @@ nodemon app.js
 
 #### オプション
 -e: 自動更新するファイルの拡張子を指定できる
+
 ```bash
 nodemon app.js -e js,hbs
 ```
 #### ローカルインストールした場合
 ローカルにインストールすると`nodemon`では実行できないので、
 package.jsonに`dev: "nodemon src/app.js"`として、
+
 ```bash
 npm run dev
 ```
@@ -333,6 +361,7 @@ console.log(chalk.red.inverse('gmail.com'))
 
 - 標準入力は"_"に、--hogeはargvのプロパティになる
 ex. node app.js add --buzz="fizz"で実行した場合
+
 ```javascript
 const yargs = require('yargs')
 console.log(yargs.argv)
@@ -341,6 +370,7 @@ console.log(yargs.argv._[0]) //→add
 ```
 
 - helpの表示/コマンドの定義
+
 ```javascript
 const yargs = require('yargs')
 yargs.command({
@@ -359,6 +389,7 @@ yargs.command({
 ```
 - builderを入れるとパラメータのチェックが可能
 	→これだと --help　が動かない（→必要になったとき調べる...）
+
 ```javascript
 yargs.command({
   command: 'add',
@@ -380,6 +411,7 @@ yargs.command({
 ### request
 今は更新されていなくて、後継はpostman-request  
 ex.  
+
 ```javascript
 request = require('request')
 
@@ -405,6 +437,7 @@ const geocode = (address, callback) => {
 
 ### express
 webserverライブラリ. 
+
 ```javascript
 const express = require("express");
 const app = express();
@@ -447,6 +480,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 - index.htmlの表示
 	- index.htmlはpublicの下に配置
 	- index.jsはsrcの下に配置
+
 ```javascript
 const express = require('express');
 const port = process.env.PORT
@@ -473,6 +507,7 @@ app.listen(port, () => {
 ### hbs
 expressのhandlebarsプラグイン.  
 express + hbs を使った例↓  
+
 ```javascript
 const express = require('express');
 const path = require('path');
@@ -539,6 +574,7 @@ app.listen(port, () => {
 
 ### mongoDB
 - CRUDの例
+
 ```javascript
 const {MongoClient, ObjectID} = require('mongodb');
 
@@ -622,6 +658,7 @@ MongoClient.connect(connectionURL, {useNewUrlParser: true}, (error, client) => {
 mongoDBとのORMで使う.  
 
 #### modelの使用その1
+
 ```javascript
 const mongoose = require('mongoose');
 const validator = require('validator');	//mongooseはバリデーションライブラリを組み合わせて使う
@@ -697,6 +734,7 @@ me.save().then(() => {	//保存でPromise
 ```
 #### modelの使用その2
 その1で定義したプロパティを`Schema`に入れて、`Schema`に対してファンクションなどを追加定義できる  
+
 ```javascript
 const mongoose = require('mongoose');
 const validator = require('validator');
@@ -770,6 +808,7 @@ module.exports = User
 
 
 #### expressを使ったCRUD
+
 ```javascript
 const express = require('express');
 require('./db/mongoose');
@@ -854,6 +893,7 @@ app.delete('/users/:id', async (req, res) => {	//削除
 #### 外部キー設定
 - UserとTaskが1:多の関係
 	- Task Model
+
 ```javascript
 const Task = mongoose.model('Task', {
   description:{
@@ -870,6 +910,7 @@ const Task = mongoose.model('Task', {
 })
 ```
   - User Model 
+
 ```javascript
 const userSchema = mongoose.Schema({
 //省略
@@ -883,6 +924,7 @@ userSchema.virtual('tasks', {
 ```
 
   - 取得の仕方
+
 ```javascript
 const User = require('./models/user')
 const Task = require('./models/task')
@@ -899,6 +941,7 @@ const main = async () => {
 main()
 ```
 #### フィルターとソートとページネーションとクエリストリング
+
 ```javascript
 router.get('/tasks', auth, async (req, res) => {
 
@@ -950,6 +993,7 @@ const hashPass = async () => {
 
 ### Json Web Token
 - jsonをtoken化する
+
 ```javascript
 const jwt = require('jsonwebtoken')
 
@@ -972,6 +1016,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJhYmMxMjMiLCJpYXQiOjE2NjUyMjE5Njl
 - multer: ファイルアップロードに使用する
 - sharp: 画像のリサイズに使用する
 - この例はformでアップロードされたファイルを受け取り、mongooseに保存する例
+
 ```javascript
 const multer = require('multer');
 const sharp = require('sharp');
@@ -1002,6 +1047,7 @@ router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) 
 - [sendgrid](https://sendgrid.com/)を使うとかんたんにemailが送れる.  
 - AWS SESよりかんたんかも.
 - sendgridのnodeライブラリはsendgrid/mail
+
 ```javascript
 const sendgridMail = require('@sendgrid/mail');
 
@@ -1031,6 +1077,7 @@ module.exports = {sendWelcomeEmail, sendCancelEmail}
 
 ### Jest
 - テストツール
+
 ```json
   "scripts": {
     "start": "node src/index.js",
@@ -1044,6 +1091,7 @@ module.exports = {sendWelcomeEmail, sendCancelEmail}
 - /tests ディレクトリに~.test.jsファイルを置くとすべて実行される. （たぶん）
 
 #### testとアサート
+
 ```javascript
 //特にrequireするものはない
 beforeEach(setupDatabase)	//testの実行の前に実行する関数を書ける
@@ -1058,6 +1106,7 @@ test('Should signup a new user', async () => {	//test関数が1つのテスト�
 - メール送信などでテストのときは実行したくないものは、`__mocks__`ディレクトリを/testsの下につくるとそちらのライブラリを見に行く
 
 - /tests/__mocks__/@sendgrid/mail.jsを中身を空で作る
+
 ```javascript
 module.exports = {
   setApiKey() {
@@ -1069,6 +1118,7 @@ module.exports = {
 }
 ```
 ↓の`sendWelcomeEmail`はモックにできる. 
+
 ```javascript
 //...
 const { sendWelcomeEmail, sendCancelEmail } = require('../emails/account')
@@ -1078,11 +1128,11 @@ router.post('/users', async (req, res) => {
     sendWelcomeEmail(user.email, user.name)
 //...
 })
-
 ```
 
 ### SuperTest
 - httpのテストモジュール. expressのテストに使う
+
 ```javascript
 const request = require('supertest');
 const express = require('express');
@@ -1098,6 +1148,7 @@ test('Should get profile for user', async () => {	//引数にexpressを渡し、
 ```
 
 ### JestとSuperTestを使ったテストの例
+
 ```javascript
 const express = require('express');
 require('./db/mongoose');
@@ -1113,6 +1164,7 @@ app.use(taskRouter)
 module.exports = app
 ```
 - ↑app.jsはアプリで使っているモジュール. テストでも使えるようにモジュール化する
+
 ```javascript
 // テストデータなどをまとめて書く用
 const jwt = require('jsonwebtoken');
@@ -1220,7 +1272,6 @@ test('Should upload avatar image', async () => {
     const user = await User.findById(userOne._id)
     expect(user.avatar).toEqual(expect.any(Buffer))
 })
-
 ```
 
 ```javascript
@@ -1341,6 +1392,7 @@ server.listen(port, () => {
 ```
 
 - クライアントサイドjs
+
 ```javascript
 const socket = io()
 
@@ -1413,7 +1465,6 @@ io.on('connection', (socket) => {
   })
 
 })
-
 ```
 
 #### callbackの受け取り
@@ -1427,6 +1478,7 @@ io.on('connection', (socket) => {
     console.log('The message was delivered!');
   })	// 3番目にcallbackファンクションを指定する 
 ```
+
 ```javascript
 const  Filter = require('bad-words')	// 禁止文字ライブラリ（英語）
   socket.on('sendMessage', (message, callback) => {	//メッセージとファンクション（callback）を受け取る
@@ -1438,7 +1490,6 @@ const  Filter = require('bad-words')	// 禁止文字ライブラリ（英語）
     io.emit('message', message)
     callback()
   })
-
 ```
 
 #### chat roomへの参加と、そのroomにだけメッセージを通知する
@@ -1508,9 +1559,9 @@ socket.on('message', (message) => {
   $messages.insertAdjacentHTML('beforeend', html)	// htmlに挿入するだけ
   autoscroll()
 })
-
 ```
 繰り返しタグも可能
+
 ```html
     <script id="sidebar-template" type="text/html">
         <h2 class="room-title">{{room}}</h2>
@@ -1522,6 +1573,7 @@ socket.on('message', (message) => {
         </ul>
     </script>
 ```
+
 ```javascript
 socket.on('roomData', ({ room, users }) => {
   const html = Mustache.render(sidebarTemplate, {
@@ -1558,6 +1610,7 @@ jsにcssを適用するときに適用するライブラリ.
 "sass-loader"
 
 - webpackの定義
+
 ```javascript
   module: {
     rules: [{
@@ -1567,6 +1620,7 @@ jsにcssを適用するときに適用するライブラリ.
   },
 ```
 - jsにimport
+
 ```javascript
 import './styles/styles.scss'
 ```
