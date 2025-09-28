@@ -1188,11 +1188,13 @@ def form_post(request):
         - 大本ファイル
     includeで差し替えるhtmlファイルを指定する
     with句で引数を渡す
+{% raw %}
 ```html
     <body>
         {% include "formapp/form_template2.html" with as_table=True %}
     </body>
 ```
+{% endraw %}
 - 差し替えるhtmlファイル
 
 差し替える部分だけを書く
