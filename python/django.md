@@ -2,7 +2,6 @@
 title: Python + Django (Udemy) メモ
 ---
 
-
 # Python + Django Udemy
 
 このメモは[Udemy講座](https://www.udemy.com/share/103OHY/)を受講して学んだ記録です。  
@@ -322,6 +321,7 @@ Age: 28
 ### templateの継承
 
 - 継承元（親/ベース）
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html>
@@ -335,7 +335,9 @@ Age: 28
     </body>
 </html>
 ```
+{% endraw %}
 - 継承先
+{% raw %}
 ```html
 {%  extends "base.html" %}      <!-- 継承元を指定  extends [継承元] -->
 {% block title %}Sample1 {{ block.super }}{% endblock %}    <!-- blockの中に書き換える内容を書く block.superで継承元の内容を利用できる -->
@@ -343,6 +345,7 @@ Age: 28
 <p>Sample1</p>
 {% endblock %}
 ```
+{% endraw %}
 
 ### template のフィルター
 - html
@@ -1935,6 +1938,7 @@ class SchoolsAdmin(admin.ModelAdmin):
 
 https://github.com/django/django/blob/main/django/contrib/admin/templates/admin/base_site.html  
 サイトタイトルを変更
+{% raw %}
 ```html
 {% extends "admin/base.html" %}
 
@@ -1946,6 +1950,7 @@ https://github.com/django/django/blob/main/django/contrib/admin/templates/admin/
 
 {% block nav-global %}{% endblock %}
 ```
+{% endraw %}
 - cssは、static/admin/css/base.cs
 
 https://github.com/django/django/blob/main/django/contrib/admin/static/admin/css/base.css  
