@@ -1,11 +1,11 @@
 ---
 title: Material-UI メモ
-render_with_liquid: false
 ---
 
 
 # Material UI
 
+{% raw %}
 ## sxをbreakpointで分ける
 https://mui.com/system/getting-started/usage/#responsive-values
 ```jsx
@@ -20,5 +20,6 @@ https://mui.com/system/getting-started/usage/#responsive-values
 ```jsx
 <Box  display="flex"  flexDirection={{ xs: 'column', md: 'row' }} >
 ```
+{% endraw %}
 
 
