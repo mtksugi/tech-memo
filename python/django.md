@@ -418,6 +418,7 @@ def convert_status_to_string(status, val):  # 関数名は任意. 引数を一�
 
     - urls.py
     引数を受ける側
+
 ```python
 urlpatterns = [
     path('', views.index, name = 'index'),
@@ -427,6 +428,7 @@ urlpatterns = [
 
     - views.py
     引数をうける側のviews.py
+
 ```python
 def home(request, first_name, last_name):   # 関数の引数を指定する
     my_name = f'{first_name} {last_name}'
