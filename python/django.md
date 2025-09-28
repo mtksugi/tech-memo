@@ -301,6 +301,7 @@ Age: 28
 - Visual Code のプラグイン [Django Templates and Backend snippets]
 
 - html
+{% raw %}
 ```html
 <ul>
     {% for band in favourite_band %}    <!-- for文 -->
@@ -316,6 +317,7 @@ Age: 28
 
 {# コメント #}  <!-- コメント -->
 ```
+{% endraw %}
 
 ### templateの継承
 
@@ -1177,6 +1179,7 @@ def form_post(request):
 - 差し替えるhtmlファイル
 
 差し替える部分だけを書く
+{% raw %}
 ```html
     <form method="POST">
         {% csrf_token %}
@@ -1192,6 +1195,7 @@ def form_post(request):
         <input type="submit" value="送信">
     </form>
 ```
+{% endraw %}
 
 - formset...複数のformを扱う
   - forms.py
