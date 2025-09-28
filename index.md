@@ -4,7 +4,7 @@ title: Technical Memo Collection
 
 # Technical Memo Collection
 
-These are my personal technical　memos, which I add whenever I notice something useful.
+These are my personal technical memos, which I add whenever I notice something useful.
 
 ## Table of Contents
 ### Git
