@@ -19,26 +19,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # GitHub Pages 用の環境
       - uses: actions/configure-pages@v5
-      - uses: actions/setup-ruby@v1
+
+      # Ruby/Jekyll を用意
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
+          bundler-cache: true
       - name: Install Jekyll
         run: |
           gem install bundler jekyll
-          bundle init
-          echo 'gem "jekyll", "~> 4.3"' >> Gemfile
-          bundle install
       - name: Build Jekyll
         run: bundle exec jekyll build -d _site
-      - name: Install Pagefind
-        run: npm i -g pagefind
+
+      # Node を用意して npx で実行（日本語対応の extended を自動取得）
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
       - name: Build Pagefind index
-        run: pagefind --source _site
+        run: |
+          npx --yes pagefind --site "_site" --bundle-dir "pagefind"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
