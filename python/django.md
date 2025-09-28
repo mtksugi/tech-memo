@@ -2476,8 +2476,8 @@ class BookFormView(FormView):
 {{ form.as_p }}
 <input type="submit" value="保存">
 </form>
-{% endraw %}
 ```
+{% endraw %}
 
 - RedirectView
 ```python
