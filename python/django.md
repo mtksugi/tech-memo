@@ -397,11 +397,13 @@ def convert_status_to_string(status, val):  # 関数名は任意. 引数を一�
 ```
 
     - html
+{% raw %}
 ```html
 {% load event_tags %}   <!-- フィルタを定義したファイルのロードを記述 -->
 
 <p>{{status|status_to_string:'aaa' }}</p>   <!-- 自作フィルタ -->
 ```
+{% endraw %}
 ※templatetagsが有効になるにはアプリの再起動が必要
 
 - templateの画面遷移
@@ -453,6 +455,7 @@ STATICFILES_DIRS = [
 
     - htmlの記述
     識別子ありの場合
+{% raw %}
 ```html
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
@@ -460,6 +463,7 @@ STATICFILES_DIRS = [
 <img src="{% static 'download/sample.png' %}">
 <img src="{% static 'download/aaa.jpg' %}">
 ```
+{% endraw %}
 
 - インスタンスプロパティの使用
 
