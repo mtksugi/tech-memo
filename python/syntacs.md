@@ -82,7 +82,7 @@ else:
 
 ### 前ゼロ編集
 - `str.zfill()`
-```python 
+```python
 number = 42
 padded_number = str(number).zfill(5)
 print(padded_number)  # 出力: 00042
@@ -117,7 +117,7 @@ print(formatted_number)  # 出力: 1,234,567,890
 - メソッド：`append`（値の追加）/`extend`（複数の値の追加）/`insert`/`clear`/`remove`/`pop`/`count`（引数の値に一致する数）/`sort`/`reverse`
 - 長さ：`len(list_)`
 
-- `extend`はjavascriptでいうところの `...` のスプレッド構文 
+- `extend`はjavascriptでいうところの `...` のスプレッド構文
 ```python
 l = [1, 2, 3]
 ll = [4, 5, 6]
@@ -784,6 +784,6 @@ json.dumps(['foo', {'bar': ('baz', None, 1.0, 2)}], ensure_ascii=False)
 ```
 
 - json文字列のオブジェクト化
-```python 
+```python
 json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')
 ```

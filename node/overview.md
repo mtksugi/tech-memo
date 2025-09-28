@@ -1002,7 +1002,6 @@ router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) 
 - [sendgrid](https://sendgrid.com/)を使うとかんたんにemailが送れる.  
 - AWS SESよりかんたんかも.
 - sendgridのnodeライブラリはsendgrid/mail
-
 ```javascript
 const sendgridMail = require('@sendgrid/mail');
 
@@ -1032,7 +1031,6 @@ module.exports = {sendWelcomeEmail, sendCancelEmail}
 
 ### Jest
 - テストツール
-
 ```json
   "scripts": {
     "start": "node src/index.js",
@@ -1085,7 +1083,6 @@ router.post('/users', async (req, res) => {
 
 ### SuperTest
 - httpのテストモジュール. expressのテストに使う
-
 ```javascript
 const request = require('supertest');
 const express = require('express');
@@ -1116,7 +1113,6 @@ app.use(taskRouter)
 module.exports = app
 ```
 - ↑app.jsはアプリで使っているモジュール. テストでも使えるようにモジュール化する
-
 ```javascript
 // テストデータなどをまとめて書く用
 const jwt = require('jsonwebtoken');

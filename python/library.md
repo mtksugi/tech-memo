@@ -19,7 +19,6 @@ flask run --port 5001
 
 ## pprint
 - 辞書型オブジェクトを改行、インデントして表示するのに便利
-
 ```python
 from pprint import pprint
 

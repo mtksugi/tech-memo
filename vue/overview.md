@@ -1042,7 +1042,6 @@ vue create
 
 
 - フォルダ構成
-
 ```
 router
     └─ index.js
@@ -1286,7 +1285,6 @@ export default {
 
 
 - フォルダ構成
-
 ```
 components
     ├─ FilterNav.vue

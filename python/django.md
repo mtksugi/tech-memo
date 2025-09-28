@@ -75,7 +75,6 @@ python manage.py runserver
 ## Django
 
 - MTV（Model, Template, View）モデル
-
 ```
 user -> 1 -> View -> 2 -> Model
        <- 6 <-         <- 3 <-
@@ -515,7 +514,6 @@ class Sales(models.Model):
 ```
 
 - classに指定したテーブルの反映...マイグレーションという
-
 ```bash
 python manage.py makemigrations ModelApp --name add_person
 ```

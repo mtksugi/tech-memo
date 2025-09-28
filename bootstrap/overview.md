@@ -153,7 +153,6 @@ h-nn
 ```
 
 - 画像のmax-width:100%, max-height:100%
-
 ```css
 <img src="..." class="mw-100">
 <img src="..." class="mh-100">

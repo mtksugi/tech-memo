@@ -45,8 +45,8 @@ su postgres pg_ctl stop -D
 sudo /Library/PostgreSQL/14/bin/psql -U postgres
 ```
 ## install for linux
-- postgresのインストール  
-```bash  
+- postgresのインストール
+```bash
 sudo apt-get install postgresql  
 ```  
 - サービス確認
@@ -57,16 +57,16 @@ systemctl status postgresql.service
 ```bash
 systemctl restart postgresql.service
 ```
-- psqlでpostgresユーザでログイン  
-```bash  
+- psqlでpostgresユーザでログイン
+```bash
 sudo -u postgres psql  
 ```  
-- postgresにubuntuユーザがログインできるようにする  
-```sql  
+- postgresにubuntuユーザがログインできるようにする
+```sql
 create role ubuntu LOGIN;  
 ```  
-- ubuntuユーザがpostgresデータベースに接続  
-```bash  
+- ubuntuユーザがpostgresデータベースに接続
+```bash
 psql -d postgres  
 ```
 - インストール時、postgresユーザのパスワードは未設定、psqlで以下を実行する
