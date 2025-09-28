@@ -19,28 +19,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      # GitHub Pages 用の環境
       - uses: actions/configure-pages@v5
 
-      # Ruby/Jekyll を用意
-      - uses: ruby/setup-ruby@v1
+      # ★ 公式のJekyllビルド（Gemfileが無くてもOK）
+      - uses: actions/jekyll-build-pages@v1
         with:
-          ruby-version: '3.2'
-          bundler-cache: true
-      - name: Install Jekyll
-        run: |
-          gem install bundler jekyll
-      - name: Build Jekyll
-        run: bundle exec jekyll build -d _site
+          source: .
+          destination: _site
+          # 環境変数は自動で production になります
 
-      # Node を用意して npx で実行（日本語対応の extended を自動取得）
+      # Pagefind（npxで実行／出力は _site/pagefind）
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
       - name: Build Pagefind index
         run: |
+          ls -lah _site
           npx --yes pagefind --site "_site" --bundle-dir "pagefind"
+          ls -lah _site/pagefind
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
