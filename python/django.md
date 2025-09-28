@@ -411,9 +411,11 @@ def convert_status_to_string(status, val):  # 関数名は任意. 引数を一�
     - 遷移元html
     {%url  'app名:遷移先ページ名'%}をつかう
     後ろに遷移先にわたす引数を書ける
+{% raw %}
 ```html
 <a href="{% url 'template_app:home'  first_name='Saburo' last_name='Ito' %}">home</a>   
 ```
+{% endraw %}
 
     - urls.py
     引数を受ける側
@@ -2339,6 +2341,7 @@ class BookListView(ListView):
         return qs
 ```
         - html
+{% raw %}
 ```html
 <table>
     <tbody>
@@ -2353,6 +2356,7 @@ class BookListView(ListView):
     </tbody>
 </table>
 ```
+{% endraw %}
 
 - CreateView / UpdateView / DeleteView
 ```python
