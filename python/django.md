@@ -409,7 +409,7 @@ def convert_status_to_string(status, val):  # 関数名は任意. 引数を一�
 - templateの画面遷移
 
     - 遷移元html
-    {% raw %}{%url  'app名:遷移先ページ名'%}{% endraw %}をつかう
+    {% raw %}`{%url  'app名:遷移先ページ名'%}`{% endraw %}をつかう
     後ろに遷移先にわたす引数を書ける
 {% raw %}
 ```html
@@ -987,6 +987,7 @@ def form_page(requet):      # templateでやった1ページごとのクラス
     )
 ```
   - html側
+{% raw %}
 ```html
     <body>
     <form method="POST">
@@ -998,6 +999,7 @@ def form_page(requet):      # templateでやった1ページごとのクラス
     </form>
     </body>
 ```
+{% endraw %}
 
 - formクラスの様々な入力形式
   - forms.py
@@ -1151,6 +1153,7 @@ def form_post(request):
 
 - formの各要素を表示
     - html
+{% raw %}
 ```html
     <form method="POST">
         {% csrf_token %}
@@ -1161,9 +1164,11 @@ def form_post(request):
         <input type="submit" value="送信">
     </form>
 ```
+{% endraw %}
 
 - formのエラーを表示
   - html
+{% raw %}
 ```html
     <form method="POST">
         {% csrf_token %}
@@ -1175,6 +1180,7 @@ def form_post(request):
             {% endfor %}
         {% endif %}
 ```
+{% endraw %}
 
 
 - formの外だし
@@ -1237,6 +1243,7 @@ def form_set_post(request):
 - html
 
 formset.management_formの指定が必要
+{% raw %}
 ```html
     <form method="POST">
         {% csrf_token %}
@@ -1248,6 +1255,7 @@ formset.management_formの指定が必要
         <input type="submit" value="送信">
     </form>
 ```
+{% endraw %}
 
 - modelSetFormで複数のフォームを一括で扱う
     - forms.py
@@ -1269,6 +1277,7 @@ class ModelSetPost(models.Model):
 ```
 
 - html
+{% raw %}
 ```html
     <form method="POST">
         {% csrf_token %}
@@ -1276,6 +1285,7 @@ class ModelSetPost(models.Model):
         <input type="submit" value="送信">
     </form>
 ```
+{% endraw %}
 
 - views.py
 ```python
@@ -1324,12 +1334,14 @@ def upload_sample(request):
 ```
 
 - html
+{% raw %}
 ```html
     <form method="POST" enctype="multipart/form-data">  <!-- enctypeにmultipart/form-dataを指定して、ファイル（バイナリデータ）を扱えるようにする -->
         {% csrf_token %}
         <input type="file" name="upload_file"><br>
         <input type="submit" value="保存">
     </form>
+{% endraw %}
 
     {% if uploaded_file_url %}
     <p>保存先： <a href="{{ uploaded_file_url }}"> {{ uploaded_file_url}} </a></p>
@@ -1366,12 +1378,14 @@ def upload_model_form(request):
     )
 ```
 - html
+{% raw %}
 ```html
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}     <!-- フォームを表示 -->
         <input type="submit" value="保存">
     </form>
+{% endraw %}
 
     {% if user %}
     <p>name： {{ user.name }}</p>
@@ -2411,6 +2425,7 @@ class BookDeleteView(DeleteView):
 
 ```
 - html
+{% raw %}
 ```html
 {% if messages %}       <!-- メッセージはmessages -->
 {% for message in messages %}
@@ -2422,6 +2437,7 @@ class BookDeleteView(DeleteView):
 {{ form.as_p }}     <!-- データはform -->
 <input type="submit" value="更新">
 </form>
+{% endraw %}
 
 ```
 
@@ -2449,12 +2465,14 @@ class BookFormView(FormView):
         return initial
 ```
   - html側
+{% raw %}
 ```html
 <form method="POST">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="保存">
 </form>
+{% endraw %}
 ```
 
 - RedirectView
