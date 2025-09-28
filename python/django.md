@@ -1692,9 +1692,11 @@ def user_logout(request):
 
 - htmlでログイン中か判断する
   - html側
+{% raw %}
 ```html
         {% if user.is_authenticated %}
 ```
+{% endraw %}
 
 - パスワードのvalidation
   - パスワードのチェック方法はsettings.pyに記載
@@ -2075,6 +2077,7 @@ from django.contrib import messages
 - html側
 
 messagesがあれば表示する
+{% raw %}
 ```html
 {% if messages %}
   {% for message in messages %}
@@ -2082,6 +2085,7 @@ messagesがあれば表示する
   {% endfor %}
 {% endif %}
 ```
+{% endraw %}
 
 - ModelFormで更新
   - forms.py
@@ -2171,6 +2175,7 @@ def create_theme(request):
 https://www.tohoho-web.com/bootstrap/grid.html  
 .col-{n} は、画面の横幅を12個のカラムに分割し、そのうちの何個分を使用するかを指定します。
   - html
+{% raw %}
 ```html
 <div class="col-1 offset-1">        <!-- カラム1つ分が写真 -->
   {% if comment.user.picture %}
@@ -2185,6 +2190,7 @@ https://www.tohoho-web.com/bootstrap/grid.html
 <hr>
 </div>
 ```
+{% endraw %}
 
 - template で for を使うときに連番が振れる
     - html
@@ -2441,9 +2447,9 @@ class BookDeleteView(DeleteView):
 {{ form.as_p }}     <!-- データはform -->
 <input type="submit" value="更新">
 </form>
-{% endraw %}
 
 ```
+{% endraw %}
 
 - FormView
 
