@@ -48,6 +48,13 @@ findした結果のファイルを`ls`して表示する
 find -name "hoge.php" | xargs ls -l
 ```
 
+## mkdir -p
+存在しない親ディレクトリを自動的に作成する
+
+```bash
+mkdir -p .github/workflows
+```
+
 ## 環境変数表示
 
 ### 表示
