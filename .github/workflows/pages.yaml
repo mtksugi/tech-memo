@@ -21,23 +21,24 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
 
-      # ★ 公式のJekyllビルド（Gemfileが無くてもOK）
+      # Jekyll ビルドは公式 Action に任せる
       - uses: actions/jekyll-build-pages@v1
         with:
           source: .
           destination: _site
-          # 環境変数は自動で production になります
 
-      # Pagefind（npxで実行／出力は _site/pagefind）
+      # 念のため権限修正（root:root で出ることがある）
+      - name: Fix permissions
+        run: sudo chown -R $USER:$USER _site
+
+      # Node + Pagefind 実行
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
       - name: Build Pagefind index
-        run: |
-          ls -lah _site
-          npx --yes pagefind --site "_site" --bundle-dir "pagefind"
-          ls -lah _site/pagefind
+        run: npx --yes pagefind --site "_site" --bundle-dir "pagefind"
 
+      # Pages アップロード
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
