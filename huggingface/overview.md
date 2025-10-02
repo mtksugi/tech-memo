@@ -1,5 +1,6 @@
 ---
 title: Hugging Face メモ
+lang: ja
 ---
 
 # hugging Face / AWS SageMaker

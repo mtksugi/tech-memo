@@ -1,5 +1,6 @@
 ---
 title: AWS 資格メモ
+lang: ja
 ---
 
 

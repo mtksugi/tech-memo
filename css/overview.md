@@ -1,5 +1,6 @@
 ---
 title: CSS メモ
+lang: ja
 ---
 
 # CSS Tips

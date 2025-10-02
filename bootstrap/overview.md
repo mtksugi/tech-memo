@@ -1,5 +1,6 @@
 ---
 title: Udemy Bootstrap 4 メモ
+lang: ja
 ---
 
 

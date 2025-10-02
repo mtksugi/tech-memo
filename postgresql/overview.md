@@ -1,5 +1,6 @@
 ---
 title: PostgreSQL メモ
+lang: ja
 ---
 
 # How to use PostgreSQL

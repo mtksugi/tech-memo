@@ -1,5 +1,6 @@
 ---
 title: Python 環境メモ
+lang: ja
 ---
 
 # Python 環境まわり

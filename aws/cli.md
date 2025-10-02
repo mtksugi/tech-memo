@@ -1,5 +1,6 @@
 ---
 title: AWS CLI メモ
+lang: ja
 ---
 
 

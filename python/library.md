@@ -1,5 +1,6 @@
 ---
 title: Python ライブラリメモ
+lang: ja
 ---
 
 # Pythonライブラリ関連

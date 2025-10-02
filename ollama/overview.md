@@ -1,5 +1,6 @@
 ---
 title: Ollama メモ
+lang: ja
 ---
 
 # ollama

@@ -1,5 +1,6 @@
 ---
 title: Python + Django (Udemy) メモ
+lang: ja
 ---
 
 # Python + Django Udemy

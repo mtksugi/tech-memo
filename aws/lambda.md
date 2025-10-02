@@ -1,6 +1,7 @@
 
 ---
 title: AWS Lambda メモ
+lang: ja
 ---
 
 # AWS Lambda

@@ -1,5 +1,6 @@
 ---
 title: Web API メモ
+lang: ja
 ---
 
 

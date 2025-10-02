@@ -1,5 +1,6 @@
 ---
 title: FFmpeg メモ
+lang: ja
 ---
 
 # ffmpeg

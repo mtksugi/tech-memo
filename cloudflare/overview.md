@@ -1,5 +1,6 @@
 ---
 title: Cloudflare メモ
+lang: ja
 ---
 
 # Cloudflare

@@ -1,5 +1,6 @@
 ---
 title: MySQL メモ
+lang: ja
 ---
 
 

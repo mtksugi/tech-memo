@@ -1,5 +1,6 @@
 ---
 title: Git/GitHub メモ
+lang: ja
 ---
 
 # Git/GitHub

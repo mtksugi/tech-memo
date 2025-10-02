@@ -1,5 +1,6 @@
 ---
 title: Material-UI メモ
+lang: ja
 ---
 
 

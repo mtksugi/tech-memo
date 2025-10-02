@@ -1,5 +1,6 @@
 ---
 title: Bash コマンドメモ
+lang: ja
 ---
 
 # bash 色々

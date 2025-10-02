@@ -1,5 +1,6 @@
 ---
 title: GCP CLI/SDK メモ
+lang: ja
 ---
 
 # Google Cloud CLI（Cloud SDK）

@@ -1,5 +1,6 @@
 ---
 title: JavaScript メモ
+lang: ja
 ---
 
 

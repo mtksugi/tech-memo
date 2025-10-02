@@ -1,5 +1,6 @@
 ---
 title: Nginx メモ
+lang: ja
 ---
 
 # nginx etc

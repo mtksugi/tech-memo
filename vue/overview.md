@@ -1,5 +1,6 @@
 ---
 title: Vue 3 & Firebase (Udemy) メモ
+lang: ja
 ---
 
 

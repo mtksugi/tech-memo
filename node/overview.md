@@ -1,5 +1,6 @@
 ---
 title: Node.js メモ
+lang: ja
 ---
 
 # node.js

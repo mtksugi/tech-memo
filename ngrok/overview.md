@@ -1,5 +1,6 @@
 ---
 title: ngrok メモ
+lang: ja
 ---
 
 # ngrok

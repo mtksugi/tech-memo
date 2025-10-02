@@ -1,5 +1,6 @@
 ---
 title: VS Code メモ
+lang: ja
 ---
 
 

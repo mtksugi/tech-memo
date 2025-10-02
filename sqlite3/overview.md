@@ -1,5 +1,6 @@
 ---
 title: SQLite3 メモ
+lang: ja
 ---
 
 # How to use sqlite3 

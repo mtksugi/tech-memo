@@ -1,5 +1,6 @@
 ---
 title: React メモ
+lang: ja
 ---
 
 # React Course Hello React

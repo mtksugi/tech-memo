@@ -1,5 +1,6 @@
 ---
 title: Python 文法メモ
+lang: ja
 ---
 
 # Python文法

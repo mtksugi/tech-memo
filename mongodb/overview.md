@@ -1,5 +1,6 @@
 ---
 title: MongoDB メモ
+lang: ja
 ---
 
 

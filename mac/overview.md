@@ -1,5 +1,6 @@
 ---
 title: Mac メモ
+lang: ja
 ---
 
 

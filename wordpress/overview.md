@@ -1,5 +1,6 @@
 ---
 title: WordPress メモ
+lang: ja
 ---
 
 # WordPress
@@ -192,7 +193,9 @@ delete FROM wp_options WHERE option_name LIKE '%transient_as3cf%' OR option_name
 
 そして、正しい.htaccess、index2.phpを保存する。
 
-```txt: .htaccess
+- .htaccess
+
+```txt
 # BEGIN WordPress
 RewriteEngine On
 RewriteBase /
@@ -205,7 +208,9 @@ RewriteRule ^$ /index2.php [L]
 # END WordPress
 ```
 
-```php: index2.php
+- index2.php
+
+```php
 <?php define( 'WP_USE_THEMES', true );require __DIR__ . '/wp-blog-header.php';
 ```
 index**2**.phpとするのは、index.phpとするとまた書き換えられてしまうため。
