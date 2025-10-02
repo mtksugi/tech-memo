@@ -6,8 +6,8 @@ title: Technical Memo Collection
 
 These are my personal technical memos, which I add whenever I notice something useful.
 
-<script src="/pagefind/pagefind-ui.js"></script>
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="{{ site.baseurl }}/pagefind/pagefind-ui.js"></script>
+<link href="{{ site.baseurl }}/pagefind/pagefind-ui.css" rel="stylesheet">
 <div id="search"></div>
 <script>
   new PagefindUI({ element: "#search", resetStyles: false, showSubResults: true });
