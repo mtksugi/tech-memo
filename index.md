@@ -1,5 +1,6 @@
 ---
 title: Technical Memo Collection
+lang: ja
 ---
 
 # Technical Memo Collection
@@ -17,11 +18,14 @@ These are my personal technical memos, which I add whenever I notice something u
 ### Git
 - [Git/GitHub memo](git/github.html)
 
-### JavaScript
-- [JavaScript memo](js/overview.html)
+### Bash
+- [Bash commands memo](bash/commands.html)
 
-### Web API
-- [Web API memo](web-api/overview.html)
+### VS Code
+- [VS Code memo](vscode/overview.html)
+
+### Mac
+- [Mac memo](mac/overview.html)
 
 ### Python
 - [Python environ memo](python/environ.html)
@@ -29,8 +33,21 @@ These are my personal technical memos, which I add whenever I notice something u
 - [Python syntacs memo](python/syntacs.html)
 - [Django memo](python/django.html)
 
-### Bash
-- [Bash commands memo](bash/commands.html)
+### JavaScript
+- [JavaScript memo](js/overview.html)
+
+### Node.js
+- [Node.js memo](node/overview.html)
+
+### Web API
+- [Web API memo](web-api/overview.html)
+
+### React
+- [React memo](react/overview.html)
+- [Material-UI memo](react/material-ui.html)
+
+### Vue
+- [Vue memo](vue/overview.html)
 
 ### MySQL
 - [MySQL memo](mysql/overview.html)
@@ -52,30 +69,14 @@ These are my personal technical memos, which I add whenever I notice something u
 ### GCP
 - [GCP CLI/SDK memo](gcp/cli-sdk.html)
 
-### Node.js
-- [Node.js memo](node/overview.html)
-
 ### Nginx
 - [Nginx memo](nginx/overview.html)
 
 ### FFmpeg
 - [FFmpeg memo](ffmpeg/overview.html)
 
-### Mac
-- [Mac memo](mac/overview.html)
-
-### VS Code
-- [VS Code memo](vscode/overview.html)
-
 ### Security, Vulnerable
 - [Fix-vulnerable memo](security/fix-vulnerable.html)
-
-### React
-- [React memo](react/overview.html)
-- [Material-UI memo](react/material-ui.html)
-
-### Vue
-- [Vue memo](vue/overview.html)
 
 ### Ollama
 - [Ollama memo](ollama/overview.html)
