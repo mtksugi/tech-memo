@@ -5,11 +5,6 @@ lang: ja
 
 # bash 色々
 
-## フォルダの中のファイルをランダムに更新日付を変更する
-
-```bash
-ls |sort -R |xargs -I % sh -c 'touch %;sleep 1;
-```
 ## lsオプション
 - 縦に並べる: -1
 - 更新日時降順: -t
