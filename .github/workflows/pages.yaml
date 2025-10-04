@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: 20
       - name: Build Pagefind index
-        run: npx --yes pagefind --site "_site" --bundle-dir "pagefind"
+        run: npx --yes pagefind --site "_site" --bundle-dir "pagefind" --force-language "ja"
 
       # Pages アップロード
       - name: Upload artifact

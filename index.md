@@ -11,7 +11,7 @@ These are my personal technical memos, which I add whenever I notice something u
 <link href="{{ site.baseurl }}/pagefind/pagefind-ui.css" rel="stylesheet">
 <div id="search"></div>
 <script>
-  new PagefindUI({ element: "#search", resetStyles: false, showSubResults: true });
+  new PagefindUI({ element: "#search", resetStyles: false, showSubResults: true, language: "ja" });
 </script>
 
 ## Table of Contents
