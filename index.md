@@ -17,6 +17,7 @@ These are my personal technical memos, which I add whenever I notice something u
 ## Table of Contents
 ### Git
 - [Git/GitHub memo](git/github.html)
+- [GitHub IO memo](git/github-io.html)
 
 ### Bash
 - [Bash commands memo](bash/commands.html)
