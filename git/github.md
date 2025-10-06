@@ -372,9 +372,9 @@ https://cli.github.com/manual/gh_issue_list
 ```bash
 gh issue list -s all -a [ユーザ名] -L 100
 ```
--s: open | closed | all
--a: アサインユーザー名
--L: 出力行数（デフォルト30件）
+`-s`: open | closed | all  
+`-a`: アサインユーザー名  
+`-L`: 出力行数（デフォルト30件）  
 
 コンソール表示では、タイムスタンプが`about 5 days ago`などとなるが、標準出力すればタイムスタンプになる。  
 タイムスタンプはclose issueならcloseした日付。
