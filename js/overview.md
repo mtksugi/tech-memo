@@ -13,8 +13,8 @@ lang: ja
 ```javascript
 const  command = process.argv[2]
 ```
-argv[0] : javascriptのランタイム？ ex. nodeの場合、'/usr/local/Cellar/node@14/14.18.3/bin/node'
-argv[1] : 実行されたファイル（フルパス）
+argv[0] : javascriptのランタイム？ ex. nodeの場合、'/usr/local/Cellar/node@14/14.18.3/bin/node'  
+argv[1] : 実行されたファイル（フルパス）  
 
 ## 配列操作
 ### 配列の中の合計

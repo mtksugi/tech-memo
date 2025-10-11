@@ -23,7 +23,8 @@ brew install git
 
 ## 始め方
 
-- 1. ローカルでプロジェクトを作る
+1. ローカルでプロジェクトを作る
+
 以下でローカルフォルダにgitのローカルプロジェクトが作成される
 
 ```bash
@@ -31,7 +32,8 @@ git init
 git add .
 git commit -m 'first create'
 ```
-- 2. GitHub上でリポジトリを作る（README.mdファイルを作成しないで作成）
+2. GitHub上でリポジトリを作る（README.mdファイルを作成しないで作成）
+
 ローカルで、画面に表示される以下のコマンドを実行すればよい
 
 ```bash
@@ -162,8 +164,8 @@ git log
 ```bash
 git show --pretty=oneline --name-only <commit_hash>
 ```
---pretty=oneline: コミットのハッシュとメッセージを1行で表示します。--name-only と組み合わせることで、ファイルリストの前にコミット情報が付加されます。
---name-only: 変更されたファイルの名前だけを表示し、実際の差分（diff）は表示されません。
+`--pretty=oneline`: コミットのハッシュとメッセージを1行で表示します。--name-only と組み合わせることで、ファイルリストの前にコミット情報が付加されます。  
+`--name-only`: 変更されたファイルの名前だけを表示し、実際の差分（diff）は表示されません。
 
 ## 変更を退避する | stash
 ローカルソースを変更中に、別のcommitを取り込みたいとき、変更内容が破棄されてしまうので、一旦退避して戻すことができる.
@@ -269,7 +271,8 @@ git checkout -- [ファイル名]
 
 
 ### 最新をpullしたらバグってたので任意のコミット箇所に戻す
-これもresetでよい
+
+この場合もresetでよい
 
 ```bash
 git reset --hard [commit hash値]
@@ -283,8 +286,8 @@ git reset --soft HEAD~1
 git push --force-with-lease origin [ブランチ名]
 ```
 
-`--soft`は変更は保持するオプション。変更も取り消すのは`--hard`。
-`--force-with-lease`は、他の人がpushしていたら防ぐオプション。気にしない場合は、`--force`。
+`--soft`は変更は保持するオプション。変更も取り消すのは`--hard`。  
+`--force-with-lease`は、他の人がpushしていたら防ぐオプション。気にしない場合は、`--force`。  
 
 ## git pull=git fetch & git merge
 
@@ -381,17 +384,17 @@ gh issue list -s all -a [ユーザ名] -L 100
 
 ## Macの場合
 
-↓に従ってghで認証情報を作成する
+↓に従ってghで認証情報を作成する  
 https://docs.github.com/ja/get-started/getting-started-with-git/caching-your-github-credentials-in-git
 
 ```bash
 brew install gh
 gh auth login
 ```
-すると選択式で進む
+すると選択式で進む  
 GitHub.com/GitHub Enterprise
-https/SSH→https
-??/GitHub CLI→GitHub CLI
+https/SSH→https  
+??/GitHub CLI→GitHub CLI  
 でGitHubにブラウザからログインして、表示されている認証コードを入力する
 
 macの場合キーチェーンアプリにGitHub.comの認証情報が追加される
