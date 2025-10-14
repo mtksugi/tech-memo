@@ -151,6 +151,15 @@ https://pypi.org/ から探せばいい
 pip index versions [パッケージ名]
 ```
 
+## 脆弱性確認（ライブラリの脆弱性確認）
+
+```bash
+pip-audit
+```
+
+`pip-audit`がなければ`pip install pip-audit`でインストールする
+
+
 ## プロセッサの確認
 
 ```python
