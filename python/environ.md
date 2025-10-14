@@ -143,10 +143,7 @@ pip uninstall [パッケージ名]
 ```
 - 探す
 
-```bash
-pip search [パッケージ名]
-```
-実際は、https://pypi.org/ から探せばいい
+https://pypi.org/ から探せばいい
 
 - 特定ライブラリのバージョンリストを表示する
 
