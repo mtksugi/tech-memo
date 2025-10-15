@@ -172,6 +172,23 @@ tgzファイルの中身の表示
 tar ztfv hoge.tgz
 ```
 
+## gunzip / gzip
+
+```bash
+gunzip data.backup.fcbackup.fc.gz
+```
+または
+```bash
+gzip -d data.backup.fcbackup.fc.gz
+```
+
+上記は元の圧縮ファイルがなくなる。元のファイルを残す場合は以下。
+
+```bash
+gunzip -c data.backup.fcbackup.fc.gz > data.backup.fcbackup.fc
+```
+
+
 ## rsync
 windowsでいうrobocopy.  Macで外部媒体へのコピーしたらめちゃ速かった
 
