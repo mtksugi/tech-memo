@@ -75,6 +75,28 @@ aws s3 mv s3://s3-url/media/stream s3://s3-url/media/movie/ --recursive
 ```
 - 大量データをローカルPCからコマンド発行したら途中でaccess deniedになった.  aws lightsailから実行すると継続できた. 大量のapi発行は制限がかかっているのかもしれない
 
+
+### rm: フォルダを丸ごと削除する
+
+```bash
+aws s3 rm s3://bucket/image/venv/ --recursive 
+```
+
+#### --dryrun: 削除対象を確認する
+
+```bash
+aws s3 rm s3://bucket/image/venv/ --recursive --dryrun
+```
+
+#### 特定拡張子以外を削除
+
+ex. jpegファイル以外を削除
+
+```bash
+aws s3 rm s3://bucket/media/image/ --recursive \
+  --exclude "*.jpg" --exclude "*.jpeg" --exclude "*.JPG" --exclude "*.JPEG" \
+```
+
 ### cloudflare R2の場合
 1. regionは`auto`とする。
 2. エンドポイントを指定する。
