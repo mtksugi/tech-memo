@@ -332,6 +332,25 @@ log/*
 ```
 !は直前ルールの否定. 
 
+## git worktree
+
+- 複数ブランチをローカルで運用するときに、ブランチごとに別フォルダを作れる
+- 毎回 `git checkout`しなくて便利
+
+- 作成:
+
+```bash
+git worktree add -b feature/foo /mydir/feature-foo
+```
+
+- 一覧/削除:
+
+```bash
+git worktree list
+git worktree remove /mydir/feature-foo   # 片付け
+git worktree prune                       # 孤児掃除
+```
+
 ## .gitignoreでgitの追跡を解消する
 
 すでにgit管理済みのファイルをあとから.gitignoreにファイルを追加しても、対象外にできない。

@@ -294,6 +294,61 @@ yarn upgrade [ライブラリ名] --dry-run
 ※dry-runでもyarn.lockは更新される
 
 
+## pnpm
+
+- nodeリポジトリをgit worktreeなどで複数コードベースを作りたいときに、`npm install`だとそれぞれにライブラリを保存してしまい、ディスクの無駄。
+- pnpmならハードリンク共有できるのでディスク削減できる。
+
+### インストール
+
+nodeのあるディレクトリで
+
+```bash
+corepack enable
+corepack prepare pnpm --activate
+```
+
+`pnpm@10.19`など必要に応じてバージョン指定する
+
+### .npmrcファイル
+
+nodeディレクトリ直下に.npmrcファイルを作成する
+
+```bash
+echo "store-dir=/mydir/.pnpm-store
+side-effects-cache=true" >> ~/.npmrc
+```
+
+### lockファイルの移行
+
+yarn.lock, package-lock.jsonファイルがあるディレクトリで
+
+```bash
+pnpm import
+```
+するとpnpm-lock.yamlが生成できる
+
+その後
+
+```bash
+pnpm istall
+```
+
+して、node_modulesのハードリンクをつくる
+
+```bash
+pnpm install --frozen-lockfile
+```
+として、既存のlockファイルに影響しないようにするとよい
+
+### start
+
+```bash
+pnpm start
+```
+
+でアプリを実行できる。  
+本体とgit worktreeなどでわけている場合は、 `PORT=3001 pnpm start`などとして、PORTを分けたり環境変数をわけて利用する
 
 
 

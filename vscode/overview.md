@@ -68,3 +68,23 @@ ex.
 "cwd": "${workspaceFolder}/summaria_app",
 ```
 
+## settings.json
+
+VSCodeを開いているディレクトリに直下に`.vscode/settings.json`をおくと、それが読み込まれる
+
+### タイトルバーの色変え
+
+ブランチをわけてコードベースを複数起動しているときに、タイトルバーを色変えすると間違えなくてよい
+
+```json
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#ff0000",
+    "titleBar.inactiveBackground": "#ff0000",
+    "titleBar.activeForeground": "#ffffff",
+    "titleBar.inactiveForeground": "#ffffff"
+  }
+}
+```
+これをsettings.jsonに保存する
+
