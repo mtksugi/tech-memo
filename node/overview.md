@@ -128,10 +128,13 @@ npm start
 バージョン更新の書き方のルール  
 
 - x.0.0 または * (アスタリスク)
+
 最も高い "メジャー" バージョンに更新します。
 - 1.x.1 または ^ (挿入)  例: ^1.1.1
+
 "マイナー" バージョンのみを更新します。
 - 1.1.x または ~ (チルダ) 例:~1.1.1
+
 最新の "パッチ" バージョンに更新します。
 
 ### devdependencies
@@ -256,6 +259,42 @@ npm audit fix --force
 
 ### outdated
 ライブラリのバージョンが古いものを表示する
+
+## yarn
+
+### install
+
+```bash
+yarn install
+```
+でpackage.jsonのに記載のライブラリを記載のバージョンルールに従ってインストールする。
+yarn.lockファイルができる。  
+複数人で共有する場合はyarn.lockに依存関係をもつので、yarn.lockを直下に置いたまま、`yarn install`する。
+
+### audit: 脆弱性チェック
+
+```bash
+yarn audit
+```
+
+### ライブラリアップデート
+
+```bash
+yarn upgrade [ライブラリ名]
+```
+
+#### dry run
+
+実際のインストールはせずに、一緒にインストールされる関連ライブラリを確認する
+
+```bash
+yarn upgrade [ライブラリ名] --dry-run
+```
+
+※dry-runでもyarn.lockは更新される
+
+
+
 
 
 ## nvm
