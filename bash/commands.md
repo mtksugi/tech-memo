@@ -188,6 +188,30 @@ gzip -d data.backup.fcbackup.fc.gz
 gunzip -c data.backup.fcbackup.fc.gz > data.backup.fcbackup.fc
 ```
 
+## ps
+
+```bash
+ps -ef
+```
+- `-e`: すべてのプロセスを表示
+- `-f`: フルフォーマット（親プロセスIDやコマンド引数を含む）
+
+
+- 特定ユーザーの全コマンドを完全に見る：
+
+```bash
+ps -u <ユーザー名> -ef
+```
+
+- ソートする
+
+```bash
+ps --sort=cmd
+```
+- `--sort=` で列名を指定  
+user,pid,ppid,stime,tty,time,cmd のいずれか
+
+
 
 ## rsync
 windowsでいうrobocopy.  Macで外部媒体へのコピーしたらめちゃ速かった
