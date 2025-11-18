@@ -160,7 +160,16 @@ tgzファイルの解凍
 
 ```bash
 tar zxfv hoge.tgz
+tar zxfv hoge.tar.gz
 ```
+tgzファイルとtar.gzファイルは基本同じ
+
+`-z`: gzip 圧縮/解凍を通す  
+`-x`: 展開 (extract)  
+`-f`: ファイル名を指定  
+`-v`: verbose（経過を表示）  
+
+
 tgzファイルに圧縮
 
 ```bash
@@ -171,6 +180,8 @@ tgzファイルの中身の表示
 ```bash
 tar ztfv hoge.tgz
 ```
+
+`-v`をつけると`ls`状態で表示。つけなければ`ls -1`状態の表示。
 
 ## gunzip / gzip
 
