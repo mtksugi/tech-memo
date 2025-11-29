@@ -342,6 +342,11 @@ log/*
 ```bash
 git worktree add -b feature/foo /mydir/feature-foo
 ```
+* 既存ブランチを使う場合は逆で指定する
+
+```bash
+git worktree add /mydir/feature-foo feature/foo
+```
 
 - 一覧/削除:
 
