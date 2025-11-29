@@ -43,6 +43,12 @@ command + shift + Gでパスを指定して開く
 
 command + shift +  .（ドット）で表示・非表示が切り替わる
 
+## ストレージ容量をCLIで確認する
+
+```bash
+diskutil apfs list
+```
+
 ## 記号・絵文字など: 文字ビューアを表示
 
 ctrl + command + space
