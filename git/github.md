@@ -133,6 +133,55 @@ git push origin feature/1	# feature/1をリモートにプッシfュする
 git merge --abort
 ```
 
+## 差分の把握
+
+### 未ステージングの変更
+
+```bash
+git diff
+```
+
+### ステージング済み（add後）の変更
+
+```bash
+git diff --staged
+# または
+git diff --cached
+```
+
+### 特定ファイルだけ
+
+```bash
+git diff path/to/file
+git diff --staged path/to/file
+```
+
+
+### status
+
+```bash
+git status -v
+```
+
+（各ファイルの diff が短く表示される）
+
+
+### git difftool
+
+別ブランチの同一ファイルをビジュアルに比較できるツール
+- 設定（比較結果をvscodeで開く設定）
+
+```bash
+git config --global diff.tool vscode
+git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE"
+```
+- 比較
+
+```bash
+git difftool ブランチ1 ブランチ2 -- path/to/file
+```
+
+
 ## 特定のコミットの反映 | cherry-pick
 
 ```bash
@@ -374,21 +423,6 @@ git commit -m "ファイルを削除などのメッセージ" 	# コミット
 ```bash
 git config --global user.name "change name"
 git config --global user.email "change email"
-```
-
-## git difftool
-
-別ブランチの同一ファイルをビジュアルに比較できるツール
-- 設定（比較結果をvscodeで開く設定）
-
-```bash
-git config --global diff.tool vscode
-git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE"
-```
-- 比較
-
-```bash
-git difftool ブランチ1 ブランチ2 -- path/to/file
 ```
 
 ## Git CLIでissueを出力
