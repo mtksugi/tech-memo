@@ -62,6 +62,12 @@ sudo killall coreaudiod
 ```
 アクティベティモニタで`coreaudiod`プロセスを強制終了でもよい（終了後自動起動する）
 
+## 壁紙フォルダが巨大すぎる
+
+壁紙設定を、空撮をシャッフルなどとしていると以下フォルダにmovファイルがたまりまくって20Gを超えるので定期的に削除する
+
+`/Users/mtk/Library/Application Support/com.apple.wallpaper`
+
 ## Mac用コマンド
 
 ### スリープの一時停止
