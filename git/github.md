@@ -156,6 +156,19 @@ git diff path/to/file
 git diff --staged path/to/file
 ```
 
+### ブランチ同士
+
+```bash
+# 現在ブランチと別ブランチ
+git diff <other-branch-name>..HEAD
+# ファイル名のみ
+git diff --name-only <other-branch-name>..HEAD
+# ブランチ同士
+git diff <branch-b>..<branch-a>
+# 別ブランチの1つ前のコミットと現在のHEADの差分
+git diff <other-branch-name>^..HEAD
+```
+
 
 ### status
 
