@@ -433,6 +433,9 @@ m h  dom mon dow   command
 sudo systemctl restart cron
 ```
 
+Amazon Linux（RHEL系）では、`crond`
+
+
 ### cronのランダム実行
 - ↓60分以内のランダムスリープ. これをcommandのシェルに入れる.
 
