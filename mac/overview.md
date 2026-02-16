@@ -66,7 +66,7 @@ sudo killall coreaudiod
 
 壁紙設定を、空撮をシャッフルなどとしていると以下フォルダにmovファイルがたまりまくって20Gを超えるので定期的に削除する
 
-`/Users/mtk/Library/Application Support/com.apple.wallpaper`
+`~/Library/Application Support/com.apple.wallpaper`
 
 ## Mac用コマンド
 
