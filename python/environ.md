@@ -98,6 +98,44 @@ pip freeze
 python -c "import sys; print(sys.path)"
 ```
 
+## python の実行オプション
+
+- **`-u`**（unbuffered）  
+  標準出力・標準エラーをバッファリングせずにすぐ出す。  
+  ログをリアルタイムで見たいとき、パイプ先やコンテナで即時表示したいときに使う。
+
+```bash
+python -u script.py
+```
+
+- **`-c "code"`**  
+  文字列のコードをその場で実行する（ワンライナーやパス確認など）。
+
+```bash
+python -c "import sys; print(sys.path)"
+```
+
+- **`-m mod`**  
+  モジュールをスクリプトとして実行する（`python -m venv`、`python -m pytest` など）。
+
+- **`-O`**  
+  最適化モード。`assert` を無効化し、`__debug__` を False にする。本番で軽くしたいときなど。
+
+- **`-OO`**  
+  `-O` に加え docstring も捨ててさらに小さくする。
+
+- **`-W default` / `-W error`**  
+  警告の扱いを変える。`-W error` で警告を例外扱いにできる。
+
+- **`-B`**  
+  `.pyc` を書かない（ソースのみで動かしたいとき）。
+
+- **`-I`**  
+  隔離モード。`PYTHONPATH` やユーザーの site-packages を無視する。再現性を上げたいときに使う。
+
+- **`--version`**  
+  バージョン表示。
+
 ## pipコマンド
 
 - インストール
