@@ -129,7 +129,7 @@ git checkout develop 	# developに移動
 git pull origin develop	# developブランチを最新にする
 git checkout feature/1	# feature/1に移動
 git merge develop 		# developをfeature/1にマージする...このあとコンフリクトを解消する作業を行う
-git push origin feature/1	# feature/1をリモートにプッシfュする
+git push origin feature/1	# feature/1をリモートにプッシュする
 ```
 つまり、pull requestでdevelopとfeature/1を同期させた上でdevelopにマージするために、まずはfeature/1に対してdevelopを適用する必要がある
 
