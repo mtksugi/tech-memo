@@ -432,6 +432,59 @@ git worktree list
 git worktree remove /mydir/feature-foo   # 片付け
 git worktree prune                       # 孤児掃除
 ```
+## fork
+
+### forkとは
+
+* GitHub上で他人のリポジトリを自分のアカウントにコピーする機能
+* 元リポジトリへの書き込み権限がなくても、自分のfork上で自由に作業できる
+* OSSへの貢献やAI Agentの実験に便利（本家を汚さない）
+
+### forkする
+
+GitHubの対象リポジトリページで「Fork」ボタンをクリック。自分のアカウント配下にコピーが作られる。
+
+### forkをcloneして作業
+
+自分のfork（`origin`）をcloneして、通常通り作業する。
+
+```
+git clone https://github.com/[自分]/[repo].git
+```
+
+### 本家リポジトリをupstreamとして追加
+
+forkは本家の変更を自動追従しないので、最初に本家を`upstream`として登録しておく。
+
+```
+git remote add upstream https://github.com/[本家owner]/[repo].git
+git remote -v    # origin(fork)とupstream(本家)の両方が見えればOK
+```
+
+### 本家の最新を取り込む（fork同期）
+
+```
+git fetch upstream
+git checkout main
+git merge upstream/main    # または git rebase upstream/main
+git push origin main       # forkにも反映
+```
+
+GitHubのfork画面にある「Sync fork」ボタンでも同期可能。
+
+### fork → 本家へのPR作成
+
+GitHubのPull Requestsページで、PRを作成することができる。本家でもfork先でもどちらでも可能。
+
+* base repository: 本家
+* base: 本家のマージ先ブランチ（main, developなど）
+* head repository: 自分のfork
+* compare: fork側のブランチ
+
+### issue番号の参照
+
+* fork側のリポジトリでは`#`番号を記載すると、本家のissueが参照可能。
+
 
 ## .gitignoreでgitの追跡を解消する
 
