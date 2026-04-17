@@ -66,6 +66,12 @@ git pull origin develop
 git clone -b [branch name] [url]
 ```
 
+プロジェクト名と異なるフォルダ名にしたいときは、
+```bash
+git clone -b [branch name] [url] [folder name]
+```
+とする
+
 ## 接続の確認
 
 ```bash
