@@ -502,6 +502,13 @@ git push origin main       # forkにも反映
 
 GitHubのfork画面にある「Sync fork」ボタンでも同期可能。
 
+#### forkを捨ててよいので本家に同期させる
+
+```bash
+git reset --hard upstream/develop
+git push origin develop --force-with-lease
+```
+
 ### fork → 本家へのPR作成
 
 GitHubのPull Requestsページで、PRを作成することができる。本家でもfork先でもどちらでも可能。
