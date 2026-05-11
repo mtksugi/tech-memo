@@ -63,6 +63,7 @@ These are my personal technical memos, which I add whenever I notice something u
 - [AWS CLI](aws/cli.html)
 - [AWS Lambda](aws/lambda.html)
 - [AWS certification memo](aws/certification.html)
+- [AWS ALB Access Log](aws/alb-access-logs.html)
 
 ### Cloudflare
 - [Cloudflare memo](cloudflare/overview.html)
