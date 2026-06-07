@@ -75,7 +75,7 @@ Step 3 などで **パスワード保護を有効** （Basic 認証の追加）�
 ## 5. URL の挙動
 
 ```
-https://main.d1v2pc3d3e78fb.amplifyapp.com
+https://main.d1v2pcxxx.amplifyapp.com
         │   └─ アプリ ID（作成時に固定）
         └─ ブランチ名
 ```
