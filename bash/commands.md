@@ -230,6 +230,13 @@ user,pid,ppid,stime,tty,time,cmd のいずれか
 ps -eo pid,user,rss,%mem,time,comm,args --sort=-rss | grep httpd
 ```
 
+## ポート番号を指定してプロセスをkillする
+
+```bash
+lsof -ti tcp:3000 | xargs kill -9 
+```
+
+
 ## top
 
 プロセスをリアルタイムで監視するコマンド。CPU・メモリ使用率のサマリと、プロセス一覧が一定間隔で更新される。負荷調査や重いプロセスの特定に使う。
