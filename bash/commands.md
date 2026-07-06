@@ -440,6 +440,57 @@ echo $((1+1))
 echo $(($RANDOM%60))
 ```
 
+## syslogの保存期間の確認方法
+syslogの保存期間はログの管理方式によって確認方法が異なる
+
+### logrotate で管理されている場合(rsyslogd + logrotateが一般的)
+
+```bash
+cat /etc/logrotate.d/rsyslog
+```
+
+`rotate`(保存世代数)や`daily`/`weekly`(ローテーション周期)の記載があれば、`rotate N × ローテーション周期` がおおよその保存期間になる
+
+Amazon Linux 2ではこのファイルに個別設定がなく、`/etc/logrotate.conf`のデフォルト設定が適用されるケースがある
+
+```bash
+cat /etc/logrotate.conf
+```
+
+Amazon Linux 2 のデフォルトは大体以下（`weekly` + `rotate 4` → 週1回ローテーション×4世代 = 約1ヶ月弱の保存）
+
+```
+weekly
+rotate 4
+```
+
+### 現在残っているログファイルを確認
+
+```bash
+ls -la /var/log/messages*
+# または
+ls -la /var/log/syslog*
+```
+
+一番古いファイルの更新日時が、実質的な保存期間の目安になる
+
+### journald(systemd)の場合
+
+```bash
+journalctl --disk-usage        # 使用ディスク容量
+cat /etc/systemd/journald.conf | grep -E "MaxRetentionSec|SystemMaxUse"
+```
+
+`MaxRetentionSec`で保存期間(秒)を直接指定していることもある
+
+### macOS の場合
+
+```bash
+cat /etc/asl.conf | grep -i ttl
+# または新しいmacOSでは
+log show --last 7d
+```
+
 ## crontab
 ### 日、月、曜日の指定
 
