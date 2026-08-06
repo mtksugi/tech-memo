@@ -230,12 +230,51 @@ user,pid,ppid,stime,tty,time,cmd のいずれか
 ps -eo pid,user,rss,%mem,time,comm,args --sort=-rss | grep httpd
 ```
 
-## ポート番号を指定してプロセスをkillする
+## lsof
+
+ポートやファイルを開いているプロセスを表示するコマンド。開発ではポート指定が特に多い。
+
+### ポート指定でプロセスを確認
 
 ```bash
-lsof -ti tcp:3000 | xargs kill -9 
+lsof -i tcp:5000
 ```
 
+- `-i`: ネットワーク接続（Internet files）を対象
+- `tcp:5000`: TCP の 5000 番ポート
+- UDP の場合: `udp:5000`
+- プロトコル省略: `-i :5000` でも可
+
+使っているプログラム名・PID も確認できる。
+
+### ポートを使っているプロセスを kill
+
+```bash
+lsof -ti tcp:5000 | xargs kill -9
+```
+
+- `-t`: PID のみ出力（パイプ向け）
+- `-i tcp:5000`: ポート 5000 を LISTEN / 使用しているプロセス
+- `kill -9`: 強制終了
+
+SIGTERM で終了させる場合:
+
+```bash
+lsof -ti tcp:5000 | xargs kill
+```
+
+### 主なオプション
+
+- `-i`: ネットワーク接続を表示
+- `-t`: PID のみ（terse）
+- `-P`: ポート番号をサービス名ではなく数字で表示
+- `-n`: ホスト名を IP で表示（DNS 逆引きしない）
+
+LISTEN 中のポート一覧:
+
+```bash
+lsof -i -P -n | grep LISTEN
+```
 
 ## top
 
@@ -374,13 +413,6 @@ uwatuki.com.		4340	IN	A	163.44.185.209
 printenv
 ```
 
-
-## 空いているポートを調べる
-使っているプログラムもわかる
-
-```bash
-lsof -i:[port番号]
-```
 
 ## arch
 Macのロゼッタのコマンド
